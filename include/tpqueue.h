@@ -13,9 +13,11 @@ struct SYM {
 template <class T>
 class TPQueue {
 private:
+
     std::vector<T> arr;
     int count;
 public:
+
     TPQueue() : count(0) {}
     void push(const T& elem) {
         if (arr.empty()) {
@@ -48,3 +50,5 @@ public:
         return count;
     }
 };
+
+#endif  // INCLUDE_TPQUEUE_H_
