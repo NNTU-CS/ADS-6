@@ -12,26 +12,24 @@ struct SYM {
 
 template <class T>
 class TPQueue {
-private:
-
-    std::vector<T> arr;
-    int count;
-public:
-
-    TPQueue() : count(0) {}
-    void push(const T& elem) {
-        if (arr.empty()) {
-            arr.push_back(elem);
-        } else {
-            int i = arr.size() - 1;
-            while (i >= 0 && elem.prior > arr[i].prior) {
-                arr[i + 1] = arr[i];
-                i--;
+    private:
+        std::vector<T> arr;
+        int count;
+    public:
+        TPQueue() : count(0) {}
+        void push(const T& elem) {
+            if (arr.empty()) {
+                arr.push_back(elem);
+            } else {
+                int i = arr.size() - 1;
+                while (i >= 0 && elem.prior > arr[i].prior) {
+                    arr[i + 1] = arr[i];
+                    i--;
+                }
+                arr[i + 1] = elem;
             }
-            arr[i + 1] = elem;
+            count++;
         }
-        count++;
-    }
     T pop() {
         if (!arr.empty()) {
             T elem = arr.back();
