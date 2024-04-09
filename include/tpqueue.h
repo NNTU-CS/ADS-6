@@ -7,6 +7,7 @@ struct SYM {
     int prior;
 };
 
+template <typename T, int size>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на кольцевом буфере
  private:
@@ -14,10 +15,10 @@ class TPQueue {
     int begin, end;
     int count;
 
-public:
+ public:
     TPQueue() : count(0), begin(0), end(0) {
-    arr = new SYM[20];
-    for (int i = 0; i < 20; i++)
+    arr = new SYM[size + 1];
+    for (int i = 0; i < size; i++)
         arr[i] = { '-', 0 };
     }
     void push(SYM a) {
@@ -38,12 +39,11 @@ public:
             }
             end = end + 1;
             count++;
-	        }
+            }
     }
 
     SYM pop() {
         if (!count) {
-            std::cout << "Error!";
             SYM a{ '0', -2 };
             return a;
         } else {
