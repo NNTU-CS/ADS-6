@@ -57,7 +57,7 @@ class TPQueue {
         }
     }
     ~TPQueue() {
-        delete []arr; 
+        delete []arr;
     }
 };
 
