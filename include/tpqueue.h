@@ -9,7 +9,7 @@ struct SYM {
 };
 
 template <typename F, int size>
-class TQueue {
+class TPQueue {
  private:
      SYM* a;
      int begin, end;
@@ -19,7 +19,7 @@ class TQueue {
      TQueue() : begin(0), end(0), cnt(0) {
          a = new SYM[size + 1];
          for (int j = 0; j < size; j++)
-             a[j] = { '--', 0 };
+             a[j] = { '-', 0 };
      }
      void push(SYM qwerty) {
          if (cnt == 0) {
@@ -35,7 +35,7 @@ class TQueue {
                      a[k].prior = a[k+1].prior;
                      a[k + 1].prior = tmp;
                  }
-             i--;
+             k--;
              }
              end += 1;
              cnt++;
