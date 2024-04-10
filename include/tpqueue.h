@@ -16,7 +16,7 @@ class TPQueue {
      int cnt;
 
  public:
-     TQueue() : begin(0), end(0), cnt(0) {
+     TPQueue() : begin(0), end(0), cnt(0) {
          a = new SYM[size + 1];
          for (int j = 0; j < size; j++)
              a[j] = { '-', 0 };
@@ -31,9 +31,9 @@ class TPQueue {
              a[k + 1] = qwerty;
              while (k + 1 > begin) {
                  if (a[k].prior < a[k + 1].prior) {
-                     SYM tmp = a[k].prior;
-                     a[k].prior = a[k+1].prior;
-                     a[k + 1].prior = tmp;
+                     SYM tmp = a[k];
+                     a[k] = a[k+1];
+                     a[k + 1] = tmp;
                  }
              k--;
              }
@@ -55,7 +55,7 @@ class TPQueue {
              return tmp;
          }
      }
-     ~TQueue() {
+     ~TPQueue() {
          delete [] a;
      }
 };
