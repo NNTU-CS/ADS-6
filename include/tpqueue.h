@@ -9,6 +9,7 @@ class TPQueue {
  private:
     int begin, end, count;
     T *data;
+
  public:
     TPQueue() : begin(0), end(0), count(0), data(new T[size]) {}
 
@@ -27,6 +28,7 @@ class TPQueue {
         int Index = end;
         while (Index > begin && data[(Index - 1) % size].prior < item.prior) {
             data[Index % size] = data[(Index - 1) % size];
+            Index--;
         }
         data[Index % size] = item;
         end = (end + 1) % size;
