@@ -26,13 +26,18 @@ class TPQueue {
         if (count >= size)
             throw std::string("Full!!!");
         int Index = end;
-        while (Index > begin && data[(Index - 1) % size].prior < item.prior) {
-            data[Index % size] = data[(Index - 1) % size];
-            Index--;
-        }
-        data[Index % size] = item;
-        end = (end + 1) % size;
         count++;
+        for (int i = begin; i < end; i++) {
+            if (data[i].prior < item.prior) {
+                Index = i;
+                break;
+            }
+        }
+        for (int i = end; i > Index; i--) {
+            data[i % size] = data[(i - 1) % size];
+            data[Index % size] = item;
+            end++;
+        }
     }
 };
 
