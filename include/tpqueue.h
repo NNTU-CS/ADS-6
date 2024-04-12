@@ -10,17 +10,18 @@ class TPQueue {
     int head, tail, count;
 
  public:
-     TPQueue() : head(0), tail(0), count(0) {}
+    TPQueue() : head(0), tail(0), count(0) {}
     void push(const T& item) {
-        if (count == 0) {
+        if (count >=size) {
             throw std::string("full");
-        }
-        count++;
-        int index = tail;
-        for (int i = head; i < tail; i++) {
-            if (item.prior > arr[i].prior) {
-                index = i;
-                break;
+        } else {
+            count++;
+            int index = tail;
+            for (int i = head; i < tail; i++) {
+                if (item.prior > arr[i].prior) {
+                    index = i;
+                    break;
+                }
             }
         }
         for (int i = tail; i < index; i++) {
@@ -33,6 +34,7 @@ class TPQueue {
         if (count == 0) {
             throw std::string("empty");
         } else {
+            count--;
             int index1 = head % size;
             head++;
             return arr[index1];
