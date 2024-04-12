@@ -18,7 +18,7 @@ class TPQueue {
         int index = tail;
         count++;
         for (int i = head; i < tail; i++) {
-            if (item.prior > arr[i].prior) {
+            if (arr[i].prior < item.prior) {
                 index = i;
                 break;
             }
