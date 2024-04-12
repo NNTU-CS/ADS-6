@@ -23,7 +23,7 @@ class TPQueue {
                 break;
             }
         }
-        for (int i = tail; i < index; i--) {
+        for (int i = tail; i > index; i--) {
             arr[i % size] = arr[(i - 1) % size];
         }
         arr[index % size] = item;
