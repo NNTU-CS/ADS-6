@@ -1,4 +1,5 @@
 // Copyright 2022 NNTU-CS
+#include <string>
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
@@ -7,13 +8,14 @@ class TPQueue {
  private:
     T arr[5];
     int head, tail, count;
+
  public:
     TPQueue() {
         head = 0;
         tail = 0;
         count = 0;
     }
-    void push(const T& item) { 
+    void push(const T& item) {
         if (count == 0) {
             throw std::string("full");
         }
