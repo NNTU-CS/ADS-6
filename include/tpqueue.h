@@ -4,11 +4,11 @@
 
 template<typename T, int size>
 class TPQueue {
-private:
+ private:
     T arr[5];
     int head, tail, count;
-public:
-    TPQueue(){
+ public:
+    TPQueue() {
         head = 0;
         tail = 0;
         count = 0;
@@ -33,9 +33,8 @@ public:
     }
     T pop() {
         if (count == 0) {
-            return -1;
-        }
-        else {
+            return "er";
+        } else {
             int index1 = head % size;
             head++;
             return arr[index1];
