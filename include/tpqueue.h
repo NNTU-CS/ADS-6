@@ -10,21 +10,23 @@ class TPQueue {
     int sizeq;
     int begin, end;
     int count;
+
  public:
     TPQueue(): begin(0), end(0), count(0), sizeq(size) {
         arr = new T[sizeq + 1];
-    };
+    }
 
     ~TPQueue() {
         delete[] arr;
-    };
+    }
 
     void push(const T& item) {
         assert(count < sizeq);
         int i;
         if (count == 0)
             arr[begin] = item;
-        else {
+        else 
+        {
             for (i = end; i >= begin; i--) {
                 if (item.prior > arr[i].prior)
                     arr[i + 1] = arr[i];
@@ -37,7 +39,7 @@ class TPQueue {
         count++;
         if (end > size)
             end -= size + 1;
-    };
+    }
 
     T pop() {
         assert(count > 0);
@@ -47,12 +49,12 @@ class TPQueue {
         if (begin > sizeq)
             begin -= sizeq + 1;
         return item;
-    };
+    }
 
     T get() const {
         assert(count > 0);
         return arr[begin];
-    };
+    }
 };
 
 struct SYM {
