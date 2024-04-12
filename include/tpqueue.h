@@ -38,9 +38,7 @@ class TPQueue {
             throw std::string("empty");
         } else {
             count--;
-            int index1 = head % size;
-            return arr[index1];
-            head++;
+            return arr[head++ % size];
         }
     }
 };
