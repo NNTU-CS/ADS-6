@@ -10,12 +10,7 @@ class TPQueue {
     int head, tail, count;
 
  public:
-    TPQueue() {
-        head = 0;
-        tail = 0;
-        count = 0;
-        arr = new T[size];
-    }
+    TPQueue() : head(0), tail(0), count(0), arr(new T[size]) {}
     void push(const T& item) {
         if (count >=size) {
             throw std::string("full");
