@@ -13,10 +13,10 @@ class TPQueue {
         tail = 0;
         count = 0;
     }
-    void push(const T& item) {
-        if (count >= size) {
-            return -1;
-        }   
+    void push(const T& item) { 
+        if (count == 0) {
+            throw std::string("full");
+        }
         count++;
         int index = tail;
         for (int i = head; i < tail; i++) {
@@ -33,7 +33,7 @@ class TPQueue {
     }
     T pop() {
         if (count == 0) {
-            return "er";
+            throw std::string("empty");
         } else {
             int index1 = head % size;
             head++;
