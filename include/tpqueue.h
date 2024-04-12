@@ -3,13 +3,17 @@
 #define INCLUDE_TPQUEUE_H_
 
 template<typename T, int size>
+struct SYM {
+  char ch;
+  int prior;
+};
 class TPQueue {
   // реализация шаблона очереди с приоритетом на кольцевом буфере
-private:
+ private:
     SYM* arr;
     int star, tail;
     int zero;
-public:
+ public:
     TPQueue() : star(0), tail(0), zero(0) {
         arr = new SYM[size + 1];
         for (int j = 0; j < size; j++)
@@ -53,11 +57,7 @@ public:
     ~TPQueue() {
         delete[]arr;
     }
-};   
-
-struct SYM {
-  char ch;
-  int prior;
 };
+
 
 #endif  // INCLUDE_TPQUEUE_H_
