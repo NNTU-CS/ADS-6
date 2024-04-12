@@ -2,17 +2,18 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-template<typename T, int size>
 struct SYM {
   char ch;
   int prior;
 };
+template<typename T, int size>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на кольцевом буфере
  private:
     SYM* arr;
     int star, tail;
     int zero;
+
  public:
     TPQueue() : star(0), tail(0), zero(0) {
         arr = new SYM[size + 1];
