@@ -39,8 +39,8 @@ class TPQueue {
         } else {
             count--;
             int index1 = head % size;
-            head++;
             return arr[index1];
+            head++;
         }
     }
 };
