@@ -25,8 +25,7 @@ class TPQueue {
         int i;
         if (count == 0)
             arr[begin] = item;
-        else 
-        {
+        else {
             for (i = end; i >= begin; i--) {
                 if (item.prior > arr[i].prior)
                     arr[i + 1] = arr[i];
