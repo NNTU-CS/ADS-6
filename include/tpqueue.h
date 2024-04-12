@@ -8,14 +8,9 @@ class TPQueue {
  private:
     T arr[5];
     int head, tail, count;
-
  public:
-    TPQueue() {
-        head = 0;
-        tail = 0;
-        count = 0;
-    }
-    void push(const T& item) {
+     TPQueue() : hesd(0), tail(0), count(0) {}
+    void push(const T& item) { 
         if (count == 0) {
             throw std::string("full");
         }
