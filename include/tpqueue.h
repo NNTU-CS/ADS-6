@@ -23,9 +23,9 @@ class TPQueue {
     void push(const T& item) {
         assert(count < sizeq);
         int i;
-        if (count == 0)
+        if (count == 0) {
             arr[begin] = item;
-        else {
+        } else {
             for (i = end; i >= begin; i--) {
                 if (item.prior > arr[i].prior)
                     arr[i + 1] = arr[i];
