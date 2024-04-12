@@ -6,7 +6,7 @@
 template<typename T, int size>
 class TPQueue {
  private:
-    T arr[5];
+    T *arr[5];
     int head, tail, count;
 
  public:
@@ -14,6 +14,7 @@ class TPQueue {
         head = 0;
         tail = 0;
         count = 0;
+        arr = new T[size];
     }
     void push(const T& item) {
         if (count >=size) {
