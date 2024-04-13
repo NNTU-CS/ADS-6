@@ -1,56 +1,50 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-
-#include <stdexcept>
+#include <string>
 
 template<typename T, int size>
 class TPQueue {
  private:
-    struct QueueItem {
-        T data;
-        int prior;
-    };
-
-    QueueItem queue[size];
-    int begin, end, count;
+    T* data;
+    int counter, begin, end;
 
  public:
-    TPQueue() : begin(0), end(0), count(0) {}
+    TPQueue() : data(new T[size]), begin(0), end(0), counter(0) {}
 
-    void push(const T& item) {
-        if (count >= size) {
-            throw std::out_of_range("Queue is full");
-        }
-        if (count == 0) {
-            queue[end].data = item;
-            queue[end].prior = item.prior;
-            count++;
-            return;
-        }
-        int current = end;
-        while (current != begin && item.prior > queue[(current - 1 + size) % size].prior) {
-            queue[current] = queue[(current - 1 + size) % size];
-            current = (current - 1 + size) % size;
-        }
-        queue[current].data = item;
-        queue[current].prior = item.prior;
-        end = (end + 1) % size;
-        count++;
+    bool isFull() const {
+        return counter == size;
+    }
+
+    bool isEmpty() const {
+        return counter == 0 || (counter >= size);
     }
 
     T pop() {
         if (isEmpty()) {
-            throw std::out_of_range("Queue is empty");
+            throw std::string("Empty!!!");
+        } else {
+            counter--;
+            return data[begin % size];
+            begin++;
         }
-        T result = queue[begin].data;
-        begin = (begin + 1) % size;
-        count--;
-        return result;
     }
 
-    bool isEmpty() const {
-        return count == 0;
+    void push(const T& item) {
+        if (isFull())
+            throw std::string("Full!!!");
+        counter++;
+        int Indx = end;
+        for (int i = begin; i < end; i++) {
+            if (data[i].prior < item.prior) {
+                Indx = i;
+                break;
+            }
+        }
+        for (int j = end; j > Indx; j--)
+            data[j % size] = data[(j - 1) % size];
+        data[Indx % size] = item;
+        end++;
     }
 };
 
