@@ -1,6 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#include <stdexcept>
 
 template <typename T>
 struct ITEM {
@@ -13,6 +14,7 @@ class TPQueue {
  private:
     ITEM<T> queue[size];
     int begin, end;
+
  public:
     TPQueue() : begin(0), end(0) {}
     void push(const T& data, int prior) {
