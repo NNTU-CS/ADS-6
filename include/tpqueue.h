@@ -13,26 +13,27 @@ class TPQueue {
     TPQueue() : data(new T[size]), begin(0), end(0), counter(0) {}
 
     bool isFull() const {
-        return counter == size;
+        return (counter == size) || (counter >= size);
     }
 
     bool isEmpty() const {
-        return counter == 0 || (counter >= size);
+        return counter == 0;
     }
 
     T pop() {
         if (isEmpty()) {
-            throw std::string("Empty!!!");
+            throw std::string("Queue is empty");
         } else {
             counter--;
-            return data[begin % size];
+            T result = *(data + begin % size);
             begin++;
+            return result;
         }
     }
 
     void push(const T& item) {
         if (isFull())
-            throw std::string("Full!!!");
+            throw std::string("Queue is full");
         counter++;
         int Indx = end;
         for (int i = begin; i < end; i++) {
