@@ -33,7 +33,7 @@ public:
   }
   T pop() {
     T f = arr[0];
-    for (int i = beg; i < end; i++) {
+    for (int i = beg; i < end - 1; i++) {
       arr[i] = arr[i + 1];
     }
     end--;
