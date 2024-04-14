@@ -23,14 +23,14 @@ class TPQueue {
          if (k >= size)
             throw std::string("Queue is Full!");
          for (int i = begin; i < end; i++) {
-            if (data[i].prior < item.prior) {
+            if (array[i].prior < el.prior) {
                 ind = i;
                 break;
             }
          }
          for (int i = end - 1; i >= ind; i--)
-            data[(i + 1) % size] = data[i % size];
-         data[ind % size] = item;
+            array[(i + 1) % size] = array[i % size];
+         array[ind % size] = el;
          end++;
     }
 
