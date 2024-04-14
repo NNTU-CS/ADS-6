@@ -8,6 +8,7 @@ template<typename T, int size>
 class TPQueue {
  private:
     int head, tail;
+    int count;
     T *data;
 
  public:
