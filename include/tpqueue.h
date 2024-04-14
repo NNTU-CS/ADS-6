@@ -9,6 +9,7 @@ class TPQueue {
  private:
     T data[Size];
     int begin, end, count;
+
  public:
     TPQueue() : begin(0), end(0), count(0) {}
 
