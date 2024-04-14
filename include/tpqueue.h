@@ -18,10 +18,10 @@ class TPQueue {
     }
 
     void push(const T& el) {
-         int ind = end;
-         k++;
          if (k >= size)
             throw std::string("Queue is Full!");
+         k++;
+         int ind = end;
          for (int i = begin; i < end; i++) {
             if (array[i].prior < el.prior) {
                 ind = i;
