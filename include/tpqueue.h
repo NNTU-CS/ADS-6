@@ -1,44 +1,43 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-
+#include <string>
 template<typename T, int size>
 class TPQueue {
  private:
-    SYM* arr;
-    int size, begin, end, k;
+    T* array;
+    int begin, end, k;
 
 public:
-    TPQueue(int s) : size(s), begin(0), end(0), k(0) {
-        arr = new SYM[size];
+    TPQueue() : begin(0), end(0), k(0) {
+        array = new T[size];
     }
 
     ~TPQueue() {
-        delete[] arr;
+        delete[] array;
     }
 
-    void push(SYM elem) {
+    void push(const T& el) {
         if (k < size) {
-            int i = end - 1;
-            while (i >= begin && elem.prior > arr[i].prior) {
-                arr[i + 1] = arr[i];
+            int i = k - 1;
+            while (i >= 0 && el.prior > array[i].prior) {
+                array[i + 1] = array[i];
                 i--;
             }
-            arr[i + 1] = elem;
-            end++;
+            array[i + 1] = el;
             k++;
+        } else {
+            throw std::string("Queue is full");
         }
     }
 
-    SYM pop() {
-        if (k > 0) {
+    T pop() {
+        if (k == 0) {
+            throw std::string("Queue is empty");
+        } else {
             k--;
-            return arr[begin++];
+            return array[begin++ % size];
         }
-    }
-
-    bool isEmpty() {
-        return k == 0;
     }
 };
 
