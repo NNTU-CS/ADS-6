@@ -8,7 +8,7 @@ class TPQueue {
     T* array;
     int begin, end, k;
 
-public:
+ public:
     TPQueue() : begin(0), end(0), k(0) {
         array = new T[size];
     }
@@ -18,17 +18,20 @@ public:
     }
 
     void push(const T& el) {
-        if (k < size) {
-            int i = k - 1;
-            while (i >= 0 && el.prior > array[i].prior) {
-                array[i + 1] = array[i];
-                i--;
+         int ind = end;
+         k++;
+         if (k >= size)
+            throw std::string("Queue is Full!");
+         for (int i = begin; i < end; i++) {
+            if (data[i].prior < item.prior) {
+                ind = i;
+                break;
             }
-            array[i + 1] = el;
-            k++;
-        } else {
-            throw std::string("Queue is full");
-        }
+         }
+         for (int i = end - 1; i >= ind; i--)
+            data[(i + 1) % size] = data[i % size];
+         data[ind % size] = item;
+         end++;
     }
 
     T pop() {
