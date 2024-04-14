@@ -1,12 +1,19 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#include <string>
+
+struct SYM {
+    char ch;
+    int prior;
+};
 
 template<typename T, int size>
 class TPQueue {
  private:
     SYM* arr;
     int count;
+
  public:
     TPQueue() : count(0) {
         arr = new SYM[size + 1];
