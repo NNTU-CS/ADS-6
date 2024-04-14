@@ -16,7 +16,7 @@ class TPQueue {
 
     T pop() {
         if (count == 0) {
-            throw std::string("empty")
+            throw std::string("empty");
         } else {
             count--;
             return data[(head++) % size];
