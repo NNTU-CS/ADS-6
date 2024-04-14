@@ -4,7 +4,7 @@
 
 template<typename T, const int size>
 class TPQueue {
-  T arr[size];
+  T arr[5];
   int beg = 0, end = 0;
 
  public:
