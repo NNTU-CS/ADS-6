@@ -2,11 +2,12 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-template<typename T, int size>
+template<typename T, const int size>
 class TPQueue {
   T arr[size];
   int beg = 0, end = 0;
-public:
+
+ public:
   TPQueue() {
     for (int i = 0; i < size; i++) {
       arr[i].ch = 0;
@@ -19,8 +20,7 @@ public:
       for (; i >= beg; i--) {
         if (sym.prior > arr[i].prior) {
           arr[i + 1] = arr[i];
-        }
-        else {
+        } else {
           break;
         }
       }
