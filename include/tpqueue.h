@@ -24,7 +24,7 @@ class TPQueue {
     }
 
     void push(const T &item) {
-        if (count >= size) {   
+        if (count >= size) {
             throw std::string("full");
         }
         count++;
