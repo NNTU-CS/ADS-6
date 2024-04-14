@@ -10,7 +10,7 @@ class TPQueue {
     int head, tail;
     int count;
     T *data;
-    
+
  public:
     TPQueue() : head(0), tail(0), count(0), data(new T[size]) {}
 
@@ -36,9 +36,8 @@ class TPQueue {
             }
             ih++;
         }
-        for (int i = tail; i > it; i--) {
+        for (int i = tail; i > it; i--) 
             data[i % size] = data[(i - 1) % size];
-        }
         data[it % size] = item;
         tail++;
     }
