@@ -36,7 +36,7 @@ class TPQueue {
             }
             ih++;
         }
-        for (int i = tail; i > it; i--) 
+        for (int i = tail; i > it; i--)
             data[i % size] = data[(i - 1) % size];
         data[it % size] = item;
         tail++;
