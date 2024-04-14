@@ -19,7 +19,7 @@ class TPQueue {
             throw std::string("empty");
         } else {
             count--;
-            return data[(head + 1) % size];
+            return data[(head++) % size];
         }
     }
 
