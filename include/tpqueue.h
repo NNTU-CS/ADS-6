@@ -10,6 +10,7 @@ class TPQueue {
     int head, tail;
     int count;
     T *data;
+    
  public:
     TPQueue() : head(0), tail(0), count(0), data(new T[size]) {}
 
