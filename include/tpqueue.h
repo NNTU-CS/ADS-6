@@ -2,14 +2,14 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-#include <stdexcept> 
-#include <utility>   
+#include <stdexcept>
+#include <utility>
 
 template<typename T, int size>
 class TPQueue {
     T *Array;
     int lol, elementkon, counter;
-public:
+ public:
     TPQueue() : Array(new T[size]), lol(0), elementkon(0), counter(0) {}
     ~TPQueue() {
         delete[] Array;
