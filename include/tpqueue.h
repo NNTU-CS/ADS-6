@@ -9,7 +9,6 @@ template<typename T, int size>
 class TPQueue {
     T *Array;
     int lol, elementkon, counter;
-    
  public:
     TPQueue() : Array(new T[size]), lol(0), elementkon(0), counter(0) {}
     ~TPQueue() {
