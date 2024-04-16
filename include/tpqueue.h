@@ -31,9 +31,7 @@ public:
 		}
 	}
 		T pop() {
-			if (k == 0)
-				throw std::string("empty");
-			else
+			if (k != 0)
 				k--;
 			return mas[a++ % size];
 	}
