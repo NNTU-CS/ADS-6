@@ -33,9 +33,8 @@ public:
 		}
 		mas[(i+1)%size] = f;
 		b++;
-}
+                 }
 		}
-	}
 		T pop() {
 			//if (k == 0)
 				//throw std::string("empty");
