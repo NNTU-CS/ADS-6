@@ -22,7 +22,7 @@ class TPQueue {
         for (i = b; i >= a; i--) {
             if (f.prior > mas[i].prior)
                 mas[(i+1)%size] = mas[i%size];
-            else 
+            else
               break;
         }
         mas[(i+1)%size] = f;
