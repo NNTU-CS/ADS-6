@@ -1,6 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#include <string>
 
 template<typename T, int size>
 class TPQueue {
@@ -9,17 +10,18 @@ private:
 	T* mas;
 	int a, b, k; //begin, end, count;
 public:
-	tpqueue():a(0),b(0),k(0),mas(new T[size]) {}
+	TPQueue():a(0),b(0),k(0),mas(new T[size]) {}
 	bool empty() const {
 		return k == 0;
 	}
-	void posh(const T& f) {
+	void push(const T& f) {
+		int i;
 		if (k >= size)
 			throw std::string("Full!");
 		else
 		{
 			++k;
-			for (int i = b; i >= a; i--) {
+			for (i = b; i >= a; i--) {
 				if (f.pr > mas[i].pr)
 					mas[i + 1] = mas[i];
 				else break;
