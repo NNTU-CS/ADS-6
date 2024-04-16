@@ -22,20 +22,20 @@ public:
 		{
 			++k;
 			for (i = b; i >= a; i--) {
-				if (f.pr > mas[i].pr)
+				if (f.prior > mas[i].prior)
 					mas[i + 1] = mas[i];
 				else break;
 			}
 			mas[i + 1] = f;
 			b++;
 		}
+	}
 		T pop() {
 			if (k == 0)
 				throw std::string("empty");
 			else
 				k--;
 			return mas[a++ % size];
-		}
 	}
 };
 
