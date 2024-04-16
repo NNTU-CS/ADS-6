@@ -8,32 +8,32 @@ class TPQueue {
   // реализация шаблона очереди с приоритетом на кольцевом буфере
 private:
 	T* mas;
-	int a, b, k; //begin, end, count;
+	int beg, end, k; //begin, end, count;
 public:
-	TPQueue():a(0),b(0),k(0),mas(new T[size]) {}
-	bool empty() const {
-		return k == 0;
-	}
+	TPQueue():beg(0),end(0),k(0),mas(new T[size]) {}
+	//bool empty() const {
+		//return k == 0;
+	//}
 	void push(const T& f) {
 		int i;
 		if (k >= size)
 			throw std::string("Full!");
 		else
 		{
-			++k;
-			for (i = b; i >= a; i--) {
+			k++;
+			for (i = end; i >= beg; i--) {
 				if (f.prior > mas[i].prior)
 					mas[i + 1] = mas[i];
 				else break;
 			}
 			mas[i + 1] = f;
-			b++;
+			end++;
 		}
 	}
 		T pop() {
 			if (k != 0)
 				k--;
-			return mas[a++ % size];
+			return mas[beg++ % size];
 	}
 };
 
