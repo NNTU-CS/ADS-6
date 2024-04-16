@@ -11,19 +11,19 @@ class TPQueue {
 	int a, b, k;
 public:
 	TPQueue():a(0), b(0), k(0), mas(new T[size]) {}
-	bool empty() const {
-		return k == 0;
-	}
+	//bool empty() const {
+		//return k == 0;
+	//}
 	void push(const T& f) {
 		int i;
-		if (k == size)
-			throw std::string("Full!");
-		else if (k == 0)
+		//if (k == size)
+			//throw std::string("Full!");
+		if (k == 0)
 		{
 			k++;
 			mas[0] = f;
 		}
-		else
+		else if(k<size)
 		{
 			k++;
 			for (i = b; i >= a; i--) {
@@ -36,9 +36,9 @@ public:
 		}
 	}
 		T pop() {
-			if (k == 0)
-				throw std::string("empty");
-			else
+			//if (k == 0)
+				//throw std::string("empty");
+			//else
 				k--;
 			return mas[(a++) % size];
 		}
