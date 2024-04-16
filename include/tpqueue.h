@@ -34,13 +34,9 @@ TPQueue():beg(0), end(0), k(0), mas(new T[size]) {}
 		}
 	}
 T pop() {
-    if (k == 0) {
-      throw std::string("Empty!");
-    } else {
       k--;
       return mas[(beg++) % size];
     }
-  }
 };
 
 struct SYM {
