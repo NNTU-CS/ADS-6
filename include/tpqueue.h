@@ -11,11 +11,11 @@ private:
 	int beg, end, k; //begin, end, count;
 public:
 	TPQueue():beg(0),end(0),k(0),mas(new T[size]) {}
-	bool empty() const {
-		return k == 0;
-	}
+	//bool empty() const {
+		//return k == 0;
+	//}
 	void push(const T& f) {
-		int i;
+		int i=0;
 		if (k >= size)
 			throw std::string("Full!");
 			else if (k == 0) {
