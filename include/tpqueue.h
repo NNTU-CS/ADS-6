@@ -8,7 +8,7 @@ class TPQueue {
   // реализация шаблона очереди с приоритетом на кольцевом буфере
  private:
 	T* mas;
-	int beg, end, k;
+	int beg, end, k=0;
 
  public:
 TPQueue():beg(0), end(0), k(0), mas(new T[size]) {}
@@ -16,7 +16,7 @@ TPQueue():beg(0), end(0), k(0), mas(new T[size]) {}
 		return k == 0;
 	}
 	void push(const T& f) {
-		int i=0;
+		int i;
 		if (k == size)
 			throw std::string("Full!");
 		else if (k == 0) {
