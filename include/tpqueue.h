@@ -6,14 +6,15 @@
 template<typename T, int size>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на кольцевом буфере
-private:
+ private:
 	T* mas;
-	int beg, end, k; //begin, end, count;
-public:
-	TPQueue():beg(0),end(0),k(0),mas(new T[size]) {}
-	//bool empty() const {
-		//return k == 0;
-	//}
+	int beg, end, k;
+
+ public:
+TPQueue():beg(0), end(0), k(0), mas(new T[size]) {}
+	bool empty() const {
+		return k == 0;
+	}
 	void push(const T& f) {
 		int i=0;
 		if (k >= size)
@@ -32,11 +33,14 @@ public:
 			end++;
 		}
 	}
-		T pop() {
-			if (k != 0)
-				k--;
-			return mas[beg++ % size];
-	}
+T pop() {
+    if (k == 0) {
+      throw std::string("Empty!");
+    } else {
+      k--;
+      return mas[(beg++) % size];
+    }
+  }
 };
 
 struct SYM {
