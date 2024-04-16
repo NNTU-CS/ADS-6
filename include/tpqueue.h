@@ -10,11 +10,11 @@ class TPQueue {
 	T* mas;
 	int a, b, k;
 public:
-	tpqueue():a(0), b(0), k(0), mas(new T[size]) {}
+	TPQueue():a(0), b(0), k(0), mas(new T[size]) {}
 	bool empty() const {
 		return k == 0;
 	}
-	void posh(const T& f) {
+	void push(const T& f) {
 		int i;
 		if (k == size)
 			throw std::string("Full!");
