@@ -8,35 +8,40 @@ class TPQueue {
   // реализация шаблона очереди с приоритетом на кольцевом буфере
  private:
 	T* mas;
-	int beg, end, k=0;
-
- public:
-TPQueue():beg(0), end(0), k(0), mas(new T[size]) {}
+	int a, b, k;
+public:
+	tpqueue():a(0), b(0), k(0), mas(new T[size]) {}
 	bool empty() const {
 		return k == 0;
 	}
-	void push(const T& f) {
+	void posh(const T& f) {
 		int i;
 		if (k == size)
 			throw std::string("Full!");
-		else if (k == 0) {
+		else if (k == 0)
+		{
 			k++;
 			mas[0] = f;
-		} else {
+		}
+		else
+		{
 			k++;
-			for (i = end; i >= beg; i--) {
+			for (i = b; i >= a; i--) {
 				if (f.prior > mas[i].prior)
-					mas[i + 1] = mas[i];
+					mas[i+1] = mas[i];
 				else break;
 			}
-			mas[i + 1] = f;
-			end++;
+			mas[i+1] = f;
+			b++;
 		}
 	}
-T pop() {
-      k--;
-      return mas[(beg++) % size];
-    }
+		T pop() {
+			if (k == 0)
+				throw std::string("empty");
+			else
+				k--;
+			return mas[(a++) % size];
+		}
 };
 
 struct SYM {
