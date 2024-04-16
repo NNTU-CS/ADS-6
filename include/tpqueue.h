@@ -26,13 +26,14 @@ public:
 		else if(k<size)
 		{
 			k++;
-			for (i = b; i >= a; i--) {
-				if (f.prior > mas[i].prior)
-					mas[i+1] = mas[i];
-				else break;
-			}
-			mas[i+1] = f;
-			b++;
+		for (i = b; i >= a; i--) {
+			if (f.prior > mas[i].prior)
+				mas[(i+1)%size] = mas[i%size];
+			else break;
+		}
+		mas[(i+1)%size] = f;
+		b++;
+}
 		}
 	}
 		T pop() {
