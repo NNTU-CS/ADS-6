@@ -10,7 +10,7 @@ private:
     T data [size];
 public:
      TPQueue() :begin(0), end(0), count(0) {}
-    void push(const T & item) {
+    void push(const T &item) {
         int i = end;
         if (count >= size)
             throw std::string("is full");
@@ -24,6 +24,8 @@ public:
          end++;
          count++;
          }
+        }
+    }
     T pop() {
         if (count == 0) {
             throw std::string("is empty");
