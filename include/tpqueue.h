@@ -32,7 +32,7 @@ public:
         }
         else {
             count--;
-            return data[begin++ % size];
+            return data[(begin++) % size];
         }
     }
 };
