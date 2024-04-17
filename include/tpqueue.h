@@ -5,12 +5,13 @@
 
 template<typename T, int size>
 class TPQueue {
-private:
-    T data [size];
+ private:
+    T data[size];
     int begin, end, counter;
-public:
+
+ public:
     TPQueue(): begin(0), end(0), counter(0) {}
-    void push(const T &item){
+    void push(const T &item) {
         int i;
         if (counter >= size) {
             throw std::string("Full!");
@@ -37,7 +38,7 @@ public:
             throw std::string("Empty!");
         } else {
             counter--;
-            return data[begin ++ % size];
+            return data[begin++ % size];
         }
     }
 };
