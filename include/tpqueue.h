@@ -17,7 +17,7 @@ public:
       }
       count++;
       while (begin1 < end) {
-          if (item.prior >= data[begin1].prior) {
+          if (item.prior > data[begin1].prior) {
               end1 = begin1;
               break;
           }
