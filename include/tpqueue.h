@@ -10,22 +10,20 @@ private:
     T data [size];
 public:
      TPQueue() :begin(0), end(0), count(0) {}
- void push(const T & item) {
-        int prior = item.prior, i = end;
+    void push(const T & item) {
+        int i = end;
         if (count >= size)
             throw std::string("is full");
         else {
-            for (; i >= begin; i--) {
-                if (data[i].prior < prior) {
-                    data[i + 1] = data[i];
-                }
-                else break;
-            }
-            data[i + 1] = item;
-            end++;
-            count++;
-        }
-    }
+        for (; i >= begin; i--) {
+         if (item.prior > data[i % size].prior) {
+             data[(i + 1) % size] = data[i % size];
+         }
+         else break;
+         data[(i + 1) % size] = item;
+         end++;
+         count++;
+         }
     T pop() {
         if (count == 0) {
             throw std::string("is empty");
