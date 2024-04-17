@@ -5,10 +5,11 @@
 
 template<typename T, int size>
 class TPQueue {
-private:
+ private:
     int begin, end, count;
     T *data;
-public:
+
+ public:
     TPQueue() : begin(0), end(0), count(0), data(new T[size]) {}
      void push(const T & item) {
       int end1 = end, begin1 = begin, i = end;
@@ -28,12 +29,10 @@ public:
           data[end1 % size] = item;
           end++;
   }
-  
     T pop() {
         if (count == 0) {
             throw std::string("is empty");
-        }
-        else {
+        } else {
             count--;
             return data[(begin++) % size];
         }
