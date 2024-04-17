@@ -9,8 +9,8 @@ private:
     int begin, end, count;
     T data [size];
 public:
-    TPQueue() :begin(0), end(0), count(0) {}
-    void push(T item) {
+     TPQueue() :begin(0), end(0), count(0) {}
+ void push(const T & item) {
         int prior = item.prior, i = end;
         if (count >= size)
             throw std::string("is full");
