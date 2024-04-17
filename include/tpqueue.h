@@ -7,27 +7,28 @@ template<typename T, int size>
 class TPQueue {
 private:
     int begin, end, count;
-    T data [size];
+    T *data;
 public:
-     TPQueue() :begin(0), end(0), count(0) {}
+    TPQueue() : begin(0), end(0), count(0), data(new T[size]) {}
     void push(const T & item) {
-       int i = end;
-       count = 1;
-       data[begin] = item;
-       if (count >= size)
-           throw std::string("is full");
-   else {
-       for (i = end; i >= begin; i--) {
-        if (item.prior > data[i % size].prior) {
-            data[(i + 1) % size] = data[i % size];
+        int i = end;
+        if (count >= size) {
+            throw std::string("is full");
         }
-        else break;
-     }
-        data[(i + 1) % size] = item;
-        end++;
         count++;
-           }
-       }
+        while (begin < end) {
+            if (item.prior > data[begin].prior) {
+                end = begin;
+                break;
+            }
+            begin++;
+        }
+        for (; i > end; i--)
+            data[i % size] = data[(i - 1) % size];
+            data[end % size] = item;
+            end++;
+    }
+  
     T pop() {
         if (count == 0) {
             throw std::string("is empty");
