@@ -39,7 +39,7 @@ class TPQueue {
 
     SYM pop() {
         if (!count) {
-            SYM a{ '00', -1 };
+            SYM a{ '0', -1 };
             return a;
         } else {
             SYM temp = arr[begin];
