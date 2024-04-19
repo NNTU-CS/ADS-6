@@ -5,52 +5,52 @@
 template<typename T, int size>
 class TPQueue {
  private:
-    T *arr;
-    int size;
-    int begin, end;
-    int count;
+    SYM* arr;
+    int kolvo;
+    int top, c;
 
- public:
-    TPQueue(int s = 100) : size(s), begin(0), end(0), count(0) {
-        arr = new T[size + 1];
+  public:
+    TPQueue() : kolvo(0), top(0), c(0) {
+        arr = new SYM[size + 1];
+        for (int i = 0; i < size; i++) 
+            arr[i] = {'-', 0};
     }
-    ~TPQueue() { delete[] arr; }
-
-    csharp Copy code void push(const T &item) {
-        if (count < size) {
-            if (end == 0) {
-                arr[end++] = item;
-                count++;
-            } else {
-                int index = end - 1;
-                while (index >= begin && item.prior > arr[index].prior) {
-                    arr[index + 1] = arr[index];
-                    index--;
-                }
-                arr[index + 1] = item;
-                end++;
-                count++;
+    void push(SYM bb) {
+        if (!kolvo) {
+            arr[top] = bb;
+            kolvo++;
+            c = top;
+        } else {
+            int i = c;
+            arr[i + 1] = bb;
+            while (i >= top) {
+                if (arr[i].prior < arr[i + 1].prior) 
+                    SYM t = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = t;
+                i--;
             }
-            if (end > size) end -= size + 1;
+            c = c + 1;
+            kolvo++;
         }
     }
-
-    T pop() {
-        if (count > 0) {
-            count--;
-            if (begin < size)
-                begin++;
-            else
-                begin = 0;
-            return arr[begin - 1];
+    SYM pop() {
+        if (!kolvo) {
+            SYM bb{'0', -1};
+            return bb;
+        } else {
+            SYM t = arr[top];
+            for (int i = 0; i < kolvo - 1; i++) {
+                arr[i] = arr[i + 1];
+            }
+            c--;
+            kolvo--;
+            return t;
         }
     }
-
-    T get() const { return arr[begin]; }
-
-    bool isEmpty() const { return count == 0; }
-
-    bool isFull() const { return count == size; }
+    ~TPQueue() { 
+     delete[] arr;
+    }
 };
 
 struct SYM {
