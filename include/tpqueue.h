@@ -37,16 +37,12 @@ int arrSize, head, tail, count;
      }
   }
 
-  T pop() {
+  SYM pop() {
      if (count == 0) {
-           throw std::string("empty");
+      throw std::string("empty");
+     } else {
+      return arr[head++ % size];
      }
-     T res = arr[0];
-     for (int i = 0; i < count - 1; ++i) {
-         arr[i] = arr[i + 1];
-     }
-     count--;
-     return res;
   }
 };
 
