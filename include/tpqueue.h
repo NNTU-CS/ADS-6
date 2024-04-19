@@ -23,7 +23,7 @@ class TPQueue {
                     if (sym.prior > arr[i].prior) {
                         arr[i + 1] = arr[i];
                     } else {
-                        breac;
+                        break;
                     }
                 }
                 arr[++i] = sym;
