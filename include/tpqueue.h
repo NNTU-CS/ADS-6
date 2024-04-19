@@ -9,10 +9,10 @@ class TPQueue {
     int kolvo;
     int top, c;
 
-  public:
+ public:
     TPQueue() : kolvo(0), top(0), c(0) {
         arr = new SYM[size + 1];
-        for (int i = 0; i < size; i++) 
+        for (int i = 0; i < size; i++)
             arr[i] = {'-', 0};
     }
     void push(SYM bb) {
@@ -24,10 +24,11 @@ class TPQueue {
             int i = c;
             arr[i + 1] = bb;
             while (i >= top) {
-                if (arr[i].prior < arr[i + 1].prior) 
+                if (arr[i].prior < arr[i + 1].prior) {
                     SYM t = arr[i];
                     arr[i] = arr[i + 1];
                     arr[i + 1] = t;
+                }
                 i--;
             }
             c = c + 1;
@@ -48,7 +49,7 @@ class TPQueue {
             return t;
         }
     }
-    ~TPQueue() { 
+    ~TPQueue() {
      delete[] arr;
     }
 };
