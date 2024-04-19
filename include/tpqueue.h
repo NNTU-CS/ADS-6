@@ -7,16 +7,23 @@ template<typename T, int size>
 class TPQueue {
  private:
     T *arr;
-    int top, end;
-    int counter;
+    int top, end, count;
 
  public:
-    TPQueue() : top(0), end(0), counter(0), arr(new T[size]) {}
+    TPQueue() : top(0), end(0), count(0), arr(new T[size]) {}
+    T pop() {
+        if (count == 0) {
+            throw std::string("Is empty");
+        } else {
+            count--;
+            return arr[top++ % size];
+        }
+    }
     void push(const T &item) {
-        if (counter >= size) {
+        if (count >= size) {
             throw std::string("Is full");
         }
-        сounter++;
+        сount++;
         int iend = end;
         int itop = top;
         while (itop < end) {
@@ -30,14 +37,6 @@ class TPQueue {
             arr[i % size] = arr[(i - 1) % size];
         arr[iend % size] = item;
         end++;
-    }
-    T pop() {
-        if (counter == 0) {
-            throw std::string("Is empty");
-        } else {
-            counter--;
-            return arr[top++ % size];
-        }
     }
 };
 
