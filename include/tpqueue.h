@@ -23,7 +23,7 @@ class TPQueue {
         if (count >= size) {
             throw std::string("Is full");
         }
-        сount++;
+        count++;
         int iend = end;
         int itop = top;
         while (itop < end) {
