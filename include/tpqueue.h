@@ -10,8 +10,7 @@ class TPQueue {
 
  public:
     TPQueue() {
-        int i = 0;
-        for (; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             arr[i].ch = 0;
             arr[i].prior = -10;
         }
