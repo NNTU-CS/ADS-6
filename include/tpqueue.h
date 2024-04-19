@@ -26,7 +26,7 @@ int arrSize, head, tail, count;
      } else {
        int i = 0;
        for (i = tail; i >= head; i--) {
-         if (arr[i].prior < item.prior) {
+         if (arr[i].prior >= item.prior) {
            arr[i+1] = arr[i];
        } else {
          break;
