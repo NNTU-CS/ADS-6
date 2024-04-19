@@ -37,7 +37,7 @@ int arrSize, head, tail, count;
      }
   }
 
-  SYM pop() {
+  T pop() {
      if (count == 0) {
       throw std::string("empty");
      } else {
