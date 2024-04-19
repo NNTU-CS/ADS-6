@@ -5,20 +5,20 @@
 
 template<typename T, int size>
 class TPQueue {
- // реализация шаблона очереди с приоритетом на кольцевом буфере
- T* arr;
- int arrSize, head, tail, count;
+// реализация шаблона очереди с приоритетом на кольцевом буфере
+T* arr;
+int arrSize, head, tail, count;
 
  public:
-   TPQueue(): head(0), tail(0), count(0), arrSize(0) {
+  TPQueue(): head(0), tail(0), count(0), arrSize(0) {
      arr = new T[arrSize + 1];
-   }
+  }
 
-   ~TPQueue() {
+  ~TPQueue() {
      delete[] arr;
-   }
+  }
 
-   void push(const T& item) {
+  void push(const T& item) {
      if (count == arrSize) {
            throw std::string("full");
      } else if (tail == head) {
@@ -35,9 +35,9 @@ class TPQueue {
        tail++;
        }
      }
-   }
+  }
 
-   SYM pop() {
+  T pop() {
      if (count == 0) {
            throw std::string("empty");
      }
@@ -47,7 +47,7 @@ class TPQueue {
      }
      count--;
      return res;
-   }
+  }
 };
 
 struct SYM {
