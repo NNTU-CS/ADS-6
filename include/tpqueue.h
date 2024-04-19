@@ -9,16 +9,24 @@ class TPQueue {
  private:
     int first;
     int last;
-    T arr[size];
+    T* arr;
+
  public:
-    TPQueue():first(0), last(0) { }
+    TPQueue():first(0), last(0) {
+    arr = new SYM[size + 1];
+    for (int i = 0; i < size; i++)
+        arr[i] = { '-', 0 };
+    }
+    ~TPQueue() {
+        delete []arr;
+    }
     void push(T sim) {
         if (last - first == size)
             throw std::string("Full!");
         else {
-            if (last == first) {
+          if (last == first) {
                 arr[last++] = sim;
-            }else {
+          } else {
               int i = last-1;
               while (i >= 0 && sim.prior <= arr[i].prior) {
                 arr[i + 1] = arr[i];
