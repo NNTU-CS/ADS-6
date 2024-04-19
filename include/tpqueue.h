@@ -13,7 +13,7 @@ class TPQueue {
 
  public:
     TPQueue():first(0), last(0) {
-    arr = new SYM[size + 1];
+    arr = new T[size + 1];
     for (int i = 0; i < size; i++)
         arr[i] = { '-', 0 };
     }
@@ -21,9 +21,9 @@ class TPQueue {
         delete []arr;
     }
     void push(T sim) {
-        if (last - first == size)
+        if (last - first == size) {
             throw std::string("Full!");
-        else {
+        } else {
           if (last == first) {
                 arr[last++] = sim;
           } else {
