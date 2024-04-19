@@ -2,51 +2,53 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-#include <iostream>
-#include <vector>
+#include <string>
+
+template<typename T, int Size>
+class TPQueue {
+ private:
+    T data[Size];
+    int begin, end, count;
+
+ public:
+    TPQueue() : begin(0), end(0), count(0) {}
+
+    void push(const T &item) {
+        int i;
+        if (count >= Size) {
+            throw std::string("Full");
+        } else {
+            if (count == 0) {
+                data[begin] = item;
+                count++;
+            } else {
+                for (i = end; i >= begin; i--) {
+                    if (item.prior > data[i % Size].prior) {
+                        data[(i + 1) % Size] = data[i % Size];
+                    } else {
+                        break;
+                    }
+                }
+                end++;
+                data[(i + 1) % Size] = item;
+                count++;
+            }
+        }
+    }
+
+    T pop() {
+        if (count == 0) {
+            throw std::string("Empty");
+        } else {
+            count--;
+            return data[begin++ % Size];
+        }
+    }
+};
 
 struct SYM {
     char ch;
     int prior;
-};
-
-template <class T>
-class TPQueue {
-    private:
-        std::vector<T> arr;
-        int count;
-    public:
-        TPQueue() : count(0) {}
-        void push(const T& elem) {
-            if (arr.empty()) {
-                arr.push_back(elem);
-            } else {
-                int i = arr.size() - 1;
-                while (i >= 0 && elem.prior > arr[i].prior) {
-                    arr[i + 1] = arr[i];
-                    i--;
-                }
-                arr[i + 1] = elem;
-            }
-            count++;
-        }
-    T pop() {
-        if (!arr.empty()) {
-            T elem = arr.back();
-            arr.pop_back();
-            count--;
-            return elem;
-        } else {
-            std::cerr << "Queue is empty." << std::endl;
-            return T();
-        }
-    }
-    bool isEmpty() const {
-        return arr.empty();
-    }
-    int size() const {
-        return count;
-    }
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
