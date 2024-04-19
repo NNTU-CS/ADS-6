@@ -5,53 +5,42 @@
 template<typename T, int size>
 class TPQueue {
  private:
-    SYM* arr;
-    int kolvo;
-    int top, c;
+    T arr[100];
+    int c, e;
 
  public:
-    TPQueue() : kolvo(0), top(0), c(0) {
-        arr = new SYM[size + 1];
-        for (int i = 0; i < size; i++)
-            arr[i] = {'-', 0};
-    }
-    void push(SYM bb) {
-        if (!kolvo) {
-            arr[top] = bb;
-            kolvo++;
-            c = top;
-        } else {
-            int i = c;
-            arr[i + 1] = bb;
-            while (i >= top) {
-                if (arr[i].prior < arr[i + 1].prior) {
-                    SYM t = arr[i];
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = t;
-                }
-                i--;
-            }
-            c = c + 1;
-            kolvo++;
+    TPQueue() {
+        int i = 0;
+        for (; i < size; i++) {
+            arr[i].ch = 0;
+            arr[i].prior = -10;
         }
     }
-    SYM pop() {
-        if (!kolvo) {
-            SYM bb{'0', -1};
-            return bb;
-        } else {
-            SYM t = arr[top];
-            for (int i = 0; i < kolvo - 1; i++) {
+    void push(T sym) {
+        if (e != 0) {
+                int i = e - 1;
+                for (; i >= c; i--) {
+                    if (sym.prior > arr[i].prior) {
+                        arr[i + 1] = arr[i];
+                    } else {
+                        breac;
+                    }
+                }
+                arr[++i] = sym;
+                e++;
+            } else {
+                arr[0] = sym;
+                e++;
+            }
+        }
+        T pop() {
+            T temp = arr[0];
+            for (int i = c; i < e - 1; i++) {
                 arr[i] = arr[i + 1];
             }
-            c--;
-            kolvo--;
-            return t;
-        }
-    }
-    ~TPQueue() {
-     delete[] arr;
-    }
+            e--;
+            return temp;
+     }
 };
 
 struct SYM {
