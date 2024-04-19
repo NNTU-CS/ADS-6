@@ -17,7 +17,8 @@ class TPQueue {
   }
   void push(T sym) {
     if (end != 0) {
-      for (int i = end - 1; i >= k; i--) {
+      int i = end - 1;
+      for (; i >= k; i--) {
         if (sym.prior > arr[i].prior) {
           arr[i + 1] = arr[i];
         } else {
