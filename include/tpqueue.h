@@ -25,7 +25,7 @@ int arrSize, head, tail, count;
        arr[tail++] = item;
      } else {
        int i = 0;
-       for (i = end; i >= head; i--) {
+       for (i = tail; i >= head; i--) {
          if (arr[i].prior < item.prior) {
            arr[i+1] = arr[i];
        } else {
@@ -41,7 +41,7 @@ int arrSize, head, tail, count;
      if (count == 0) {
            throw std::string("empty");
      }
-     SYM res = arr[0];
+     T res = arr[0];
      for (int i = 0; i < count - 1; ++i) {
          arr[i] = arr[i + 1];
      }
@@ -55,4 +55,4 @@ struct SYM {
   int prior;
 };
 
-#endif  // INCLUDE_TPQUEUE_T*arr;H_
+#endif  // INCLUDE_TPQUEUE_H_
