@@ -8,37 +8,34 @@ class TPQueue {
  private:
     T *arr;
     int top, end;
-    int c;
+    int counter;
 
  public:
-    TPQueue() : arr(new T[size]), top(0), end(0), c(0) {}
-    void push(const T &i) {
-        int i;
-        if (c >= size) {
+    TPQueue() : top(0), end(0), counter(0), arr(new T[size]) {}
+    void push(const T &item) {
+        if (counter >= size) {
             throw std::string("Is full");
-        } else {
-            if (c == 0) {
-                arr[top] = i;
-                c++;
-            } else {
-                for (i = end; i >= top; i--) {
-                    if (i.prior > arr[i % size].prior) {
-                        arr[(i + 1) % size] = arr[i % size];
-                    } else {
-                        break;
-                    }
-                }
-                end++;
-                arr[(i + 1) %size] = i;
-                c++;
-            }
         }
+        сounter++;
+        int iend = end;
+        int itop = top;
+        while (itop < end) {
+            if (arr[itop].prior < item.prior) {
+                iend = itop;
+                break;
+            }
+            itop++;
+        }
+        for (int i = end; i > iend; i--)
+            arr[i % size] = arr[(i - 1) % size];
+        arr[iend % size] = item;
+        end++;
     }
     T pop() {
-        if (c == 0) {
+        if (counter == 0) {
             throw std::string("Is empty");
         } else {
-            c--;
+            counter--;
             return arr[top++ % size];
         }
     }
