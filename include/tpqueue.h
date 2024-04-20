@@ -3,10 +3,10 @@
 #define INCLUDE_TPQUEUE_H_
 
 #include <stdexcept>
-template <typename T, int size>
+template <typename T, int SIZE>
 class TPQueue {
  private:
-  T data[size];
+  T data[SIZE];
   int count;
   int begin;
   int end;
