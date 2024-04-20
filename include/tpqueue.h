@@ -1,9 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-
 #include <string>
-
 template <typename T, int size>
 class TPQueue {
  private:
@@ -26,12 +24,12 @@ class TPQueue {
     a[p % size] = t;
     end++;
   }
-  T& pop() {
-    if (c != 0) {
+  T pop() {
+    if (c == 0) {
+      throw std::string("error");
+    } else {
       c--;
       return a[begin++ % size];
-    } else {
-      throw std::string("error");
     }
   }
 };
