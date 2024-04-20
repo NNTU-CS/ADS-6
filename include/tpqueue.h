@@ -1,7 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-#inlude <cassert>
+#include <cassert>
 
 template<typename T, int size>
 class TPQueue {
@@ -30,8 +30,8 @@ class TPQueue {
                 break;
             }
         }
-        for (int i = end - 1; i >= pos; i--) {
-            arr[(i+1) % size] = arr[i % size]
+        for (int i = end - 1; i >= pe; i--) {
+            arr[(i+1) % size] = arr[i % size];
         }
         arr[pe % size] = item;
         end++;
