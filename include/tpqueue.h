@@ -11,12 +11,12 @@ struct SYM {
 
 template<typename T, int size>
 class TPQueue {
-private :
+private:
     T *arr;
     int begin, end;
     int count;
 
-public :
+public:
     TPQueue();
 
     ~TPQueue();
@@ -80,5 +80,4 @@ void TPQueue<T, size>::print() const {
     }
     std::cout << std::endl;
 }
-
 #endif  // INCLUDE_TPQUEUE_H_
