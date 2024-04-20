@@ -19,8 +19,17 @@ int current;
     if (current == 0) {
       queue[0] = elm;
       current++;
-    } else {
-      queue[current++] = elm;
+    } else if (current != size) {
+      int position = 0;
+      for (int i = current; i > 0; i--) {
+        if (((SYM)queue[i-1]).prior < temp.prior) {
+          position = i;
+          break;
+        }
+        queue[i] = queue[i - 1];
+      }
+      queue[position] = elm;
+      current++;
     }
   }
   T pop() {
