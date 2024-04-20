@@ -17,9 +17,10 @@ class TPQueue {
     int count;
 
  public :
-    TPQueue();
+    TPQueue() : arr(new T[size]), begin(0), end(0), count(0) {
+    }
 
-    ~TPQueue();
+    ~TPQueue() { delete[] arr; }
 
     void push(const T &item);
 
@@ -29,30 +30,17 @@ class TPQueue {
 };
 
 template<typename T, int size>
-TPQueue<T, size>::TPQueue() : arr(new T[size]), begin(0), end(0), count(0) {
-}
-
-template<typename T, int size>
-TPQueue<T, size>::~TPQueue() {
-    delete[] arr;
-}
-
-template<typename T, int size>
 void TPQueue<T, size>::push(const T &item) {
     if (count < size) {
-        arr[end++] = item;
-        ++count;
-        if (end == size)
-            end = 0;
-        for (int i = begin; i < end - 1; ++i) {
-            for (int j = begin; j < end - 1; ++j) {
-                if (arr[j].prior > arr[j + 1].prior) {
-                    T temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
+        int i = end - 1;
+        while (i >= begin && item.prior > arr[i].prior) {
+            arr[(i + 1) % size] = arr[i];
+            --i;
         }
+        arr[(i + 1) % size] = item;
+        ++end;
+        if (end == size) end = 0;
+        ++count;
     } else {
         std::cerr << "Queue is full!" << std::endl;
         exit(EXIT_FAILURE);
@@ -62,28 +50,11 @@ void TPQueue<T, size>::push(const T &item) {
 template<typename T, int size>
 T TPQueue<T, size>::pop() {
     if (count > 0) {
-        T highestPriorityItem = arr[begin];
-        int highestPriorityIndex = begin;
-
-        // Найти элемент с наивысшим приоритетом
-        for (int i = begin + 1; i != end; ++i) {
-            if (arr[i].prior < highestPriorityItem.prior) {
-                highestPriorityItem = arr[i];
-                highestPriorityIndex = i;
-            }
-        }
-
-        // Удалить элемент с наивысшим приоритетом из очереди
-        for (int i = highestPriorityIndex; i != end - 1; ++i) {
-            arr[i] = arr[i + 1];
-        }
-        --end;
-        if (end < 0)
-            end = size - 1;
-
+        T item = arr[begin];
+        ++begin;
+        if (begin == size) begin = 0;
         --count;
-
-        return highestPriorityItem;
+        return item;
     } else {
         std::cerr << "Queue is empty!" << std::endl;
         exit(EXIT_FAILURE);
@@ -92,8 +63,11 @@ T TPQueue<T, size>::pop() {
 
 template<typename T, int size>
 void TPQueue<T, size>::print() const {
-    for (int i = begin; i < end; ++i) {
+    int i = begin;
+    while (i != end) {
         std::cout << arr[i].ch << " ";
+        ++i;
+        if (i == size) i = 0;
     }
     std::cout << std::endl;
 }
