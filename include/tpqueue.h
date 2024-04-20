@@ -11,7 +11,7 @@ class TPQueue {
   int begin;
   int end;
 
-public:
+ public:
   TPQueue() : count(0), begin(0), end(0) {}
 
   void push(const T &elem) {
