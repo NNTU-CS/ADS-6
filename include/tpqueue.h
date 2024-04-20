@@ -50,7 +50,6 @@ class TPQueue {
     for (int i = start; i < index; i++) {
       std::cout << data[i].ch << " ";
     }
-    std::cout << "E" << std::endl;
   }
 
   T get_elem_by_id(int id) { return data[id]; }
