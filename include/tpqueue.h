@@ -11,13 +11,13 @@ struct SYM {
 
 template<typename T, int size>
 class TPQueue {
-private:
+ private:
     T* array;
     int start;
     int finish;
     int count;
 
-public:
+ public:
     TPQueue() {
         start = 0;
         finish = 0;
