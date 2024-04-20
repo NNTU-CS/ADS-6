@@ -11,12 +11,12 @@ struct SYM {
 
 template<typename T, int size>
 class TPQueue {
-private:
+ private :
     T *arr;
     int begin, end;
     int count;
 
-public:
+ public :
     TPQueue();
 
     ~TPQueue();
@@ -62,11 +62,28 @@ void TPQueue<T, size>::push(const T &item) {
 template<typename T, int size>
 T TPQueue<T, size>::pop() {
     if (count > 0) {
-        T item = arr[begin++];
+        T highestPriorityItem = arr[begin];
+        int highestPriorityIndex = begin;
+
+        // Найти элемент с наивысшим приоритетом
+        for (int i = begin + 1; i != end; ++i) {
+            if (arr[i].prior < highestPriorityItem.prior) {
+                highestPriorityItem = arr[i];
+                highestPriorityIndex = i;
+            }
+        }
+
+        // Удалить элемент с наивысшим приоритетом из очереди
+        for (int i = highestPriorityIndex; i != end - 1; ++i) {
+            arr[i] = arr[i + 1];
+        }
+        --end;
+        if (end < 0)
+            end = size - 1;
+
         --count;
-        if (begin == size)
-            begin = 0;
-        return item;
+
+        return highestPriorityItem;
     } else {
         std::cerr << "Queue is empty!" << std::endl;
         exit(EXIT_FAILURE);
