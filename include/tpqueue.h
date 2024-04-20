@@ -50,11 +50,26 @@ void TPQueue<T, size>::push(const T &item) {
 template<typename T, int size>
 T TPQueue<T, size>::pop() {
     if (count > 0) {
-        T item = arr[begin];
-        ++begin;
-        if (begin == size) begin = 0;
+        T highestPriorityItem = arr[begin];
+        int highestPriorityIndex = begin;
+
+        for (int i = begin + 1; i != (end == 0 ? size : end); ++i) {
+            if (arr[i % size].prior < highestPriorityItem.prior) {
+                highestPriorityItem = arr[i % size];
+                highestPriorityIndex = i % size;
+            }
+        }
+
+        for (int i = highestPriorityIndex; i != (end == 0 ? size - 1 : end - 1); ++i) {
+            arr[i % size] = arr[(i + 1) % size];
+        }
+        --end;
+        if (end < 0)
+            end = size - 1;
+
         --count;
-        return item;
+
+        return highestPriorityItem;
     } else {
         std::cerr << "Queue is empty!" << std::endl;
         exit(EXIT_FAILURE);
