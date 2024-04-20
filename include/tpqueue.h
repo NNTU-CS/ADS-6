@@ -16,7 +16,7 @@ class TPQueue {
     ++count;
     int pos = last;
     //находим нужную позицию
-    while((arr[pos].prior < data.prior) && (pos != first))
+    while ((arr[pos].prior < data.prior) && (pos != first))
       pos--;
     //сдвигаем
     for (int i = last; i> pos; i--)
