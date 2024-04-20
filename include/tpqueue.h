@@ -7,13 +7,17 @@
 template<typename T, int size>
 class TPQueue {
  private:
-  T* arr;
+  struct ITEM {
+    T data;
+    int prior;
+  };
+  ITEM* arr;
   int begin;
   int end;
   int count;
 
  public:
-  TPQueue() : begin(0), end(0), count(0) { arr = new T[size]; }
+  TPQueue() : begin(0), end(0), count(0) { arr = new ITEM[size]; }
 
   ~TPQueue() { delete[] arr; }
 
@@ -23,8 +27,7 @@ class TPQueue {
 
   void push(const T& item) {
     if (isFull()) {
-      std::cout << "Error: Queue is full!\n";
-      return;
+      pop();
     }
     int temp = end - 1;
     if (temp < 0) temp = size - 1;
@@ -32,16 +35,17 @@ class TPQueue {
       arr[(temp + 1) % size] = arr[temp];
       temp--;
     }
-    arr[(temp + 1) % size] = item;
+    arr[(temp + 1) % size].data = item;
+    arr[(temp + 1) % size].prior = item.prior;
     end = (end + 1) % size;
     count++;
   }
 
   T pop() {
     if (isEmpty()) {
-      std::cout << "Error: Queue is empty!\n";
+      std::cerr << "Error: Queue is empty!\n";
     }
-    T item = arr[begin];
+    T item = arr[begin].data;
     begin = (begin + 1) % size;
     count--;
     return item;
