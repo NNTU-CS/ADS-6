@@ -7,7 +7,6 @@ template<typename T, int size>
 class TPQueue {
  private:
     T* arr;
-    int SIZE;
     int begin, end, count;
 
  public:
@@ -15,7 +14,7 @@ class TPQueue {
         begin = 0;
         end = 0;
         count = 0;
-        arr = new T[SIZE];
+        arr = new T[size];
     }
     ~TPQueue() {
         delete[] arr;
