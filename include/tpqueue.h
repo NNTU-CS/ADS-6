@@ -6,12 +6,34 @@
 template<typename T, int size>
 class TPQueue {
  private :
-    int front, rear;
-    int itemCount;
+    int front, rear, itemCount;
     T *storage;
 
  public :
     TPQueue() : front(0), rear(0), itemCount(0), storage(new T[size]) {
+    }
+
+    void push(const T &item) {
+        int currentNum;
+        if (itemCount >= size) {
+            throw std::string("Queue is full");
+        } else {
+            if (itemCount == 0) {
+                storage[front] = item;
+                itemCount++;
+            } else {
+                for (currentNum = rear; currentNum >= front; currentNum--) {
+                    if (item.prior > storage[currentNum % size].prior) {
+                        storage[(currentNum + 1) % size] = storage[currentNum % size];
+                    } else {
+                        break;
+                    }
+                }
+                rear++;
+                storage[(currentNum + 1) % size] = item;
+                itemCount++;
+            }
+        }
     }
 
     T pop() {
@@ -23,29 +45,11 @@ class TPQueue {
             return storage[(front++) % size];
         }
     }
-
-    void push(const T &item) {
-        if (itemCount >= size) {
-            throw std::string("Queue is full");
-        }
-        itemCount++;
-        int insertIndex = rear, compareIndex = front;
-        while (compareIndex < rear) {
-            if (storage[compareIndex].prior < item.prior) {
-                insertIndex = compareIndex;
-                break;
-            }
-            compareIndex++;
-        }
-        for (int i = rear; i > insertIndex; i--)
-            storage[i % size] = storage[(i - 1) % size];
-        storage[insertIndex % size] = item;
-        rear++;
-    }
 };
 
 struct SYM {
     char ch;
     int prior;
 };
+
 #endif  // INCLUDE_TPQUEUE_H_
