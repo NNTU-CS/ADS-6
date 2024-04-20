@@ -12,7 +12,7 @@ class TPQueue {
 
  public:
     TPQueue(): begin(0), end(0), count(0), arr(new T[size]) {}
-    void push(const T& item) {
+    void push(const T &item) {
         int curNum;
         if (count >= size) {
             throw std::string("Full!!!");
