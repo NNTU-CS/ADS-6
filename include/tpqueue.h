@@ -9,7 +9,7 @@ template<typename T, int size>
 class TPQueue {
 T* queue;
 int current;
-public:
+ public:
   TPQueue() {
     queue = new T[size];
     current = 0;
@@ -19,16 +19,14 @@ public:
     if (current == 0) {
       queue[0] = elm;
       current++;
-    }
-    else {
+    } else {
       queue[current++] = elm;
     }
   }
   T pop() {
     if (current == 0) {
       return T();
-    }
-    else {
+    } else {
       return queue[--current];
     }
   }
