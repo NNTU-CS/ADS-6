@@ -27,16 +27,17 @@ class TPQueue {
 
   void push(const T& item) {
     if (isFull()) {
-      pop();
+      std::cerr << "Error: Queue is full!\n";
+      return;
     }
-    int temp = end - 1;
-    if (temp < 0) temp = size - 1;
-    while (temp >= 0 && arr[temp].prior < item.prior) {
-      arr[(temp + 1) % size] = arr[temp];
-      temp--;
+    int current = end;
+    while (current != begin &&
+           item.prior > arr[(current - 1 + size) % size].prior) {
+      arr[current] = arr[(current - 1 + size) % size];
+      current = (current - 1 + size) % size;
     }
-    arr[(temp + 1) % size].data = item;
-    arr[(temp + 1) % size].prior = item.prior;
+    arr[current].data = item;
+    arr[current].prior = item.prior;
     end = (end + 1) % size;
     count++;
   }
