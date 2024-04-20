@@ -5,12 +5,12 @@
 
 template<typename T, int size>
 class TPQueue {
-private:
+ private:
     T* arr;
     int Size;
     int count, head, tail;
 
-public:
+ public:
     TPQueue() {
         count = 0, head = 0, tail = 0;
         arr = new T[Size];
@@ -19,7 +19,7 @@ public:
     ~TPQueue() {
         delete[] arr;
     }
-    void Push(const T& item) {
+    void push(const T& item) {
         assert(count < size);
         count++;
         int N = tail;
@@ -38,7 +38,7 @@ public:
     T pop() {
         assert(count > 0);
         count--;
-        return arr[head ++ % size];
+        return arr[head++ % size];
     }
 };
 
@@ -46,3 +46,4 @@ struct SYM {
     char ch;
     int prior;
 };
+#endif  // INCLUDE_TPQUEUE_H_
