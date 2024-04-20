@@ -1,7 +1,10 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-
+struct SYM {
+  char ch;
+  int prior;
+};
 template<typename T, int size>
 class TPQueue {
 T* queue;
@@ -11,12 +14,8 @@ public:
     queue = new T[size];
     current = 0;
   }
-
-  
   void push(T elm) {
-    
     SYM temp = (SYM)elm;
-    
     if (current == 0) {
       queue[0] = elm;
       current++;
@@ -25,7 +24,6 @@ public:
       queue[current++] = elm;
     }
   }
-
   T pop() {
     if (current == 0) {
       return T();
@@ -35,10 +33,4 @@ public:
     }
   }
 };
-
-struct SYM {
-  char ch;
-  int prior;
-};
-
 #endif  // INCLUDE_TPQUEUE_H_
