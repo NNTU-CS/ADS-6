@@ -46,12 +46,6 @@ class TPQueue {
     }
   }
 
-  void print_arr() {
-    for (int i = start; i < index; i++) {
-      std::cout << data[i].ch << " ";
-    }
-  }
-
   T get_elem_by_id(int id) { return data[id]; }
 };
 
