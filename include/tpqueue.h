@@ -1,3 +1,4 @@
+// Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
@@ -10,12 +11,12 @@ struct SYM {
 
 template<typename T, int size>
 class TPQueue {
-private:
+private :
     T *arr;
     int begin, end;
     int count;
 
-public:
+public :
     TPQueue();
 
     ~TPQueue();
