@@ -8,6 +8,7 @@ class TPQueue {
  private:
     T *data;
     int begin, end, count;
+
  public:
     TPQueue(): data(new T[size]), begin(0), end(0), count(0) {}
     void  push(const T &item) {
