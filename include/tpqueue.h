@@ -5,11 +5,11 @@
 
 template<typename T, int size>
 class TPQueue {
-  private :
+   private :
       int front, rear, itemCount;
   T *storage;
 
-  public :
+   public :
       TPQueue() : front(0), rear(0), itemCount(0), storage(new T[size]) {
   }
 
