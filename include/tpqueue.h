@@ -11,13 +11,13 @@ class TPQueue {
     int begin, end, count;
 
  public:
-    TQueue() {
+    TPQueue() {
         begin = 0;
         end = 0;
         count = 0;
         arr = new T[SIZE];
     }
-    ~TQueue() {
+    ~TPQueue() {
         delete[] arr;
     }
     void push(const T& item) {
