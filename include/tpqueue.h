@@ -9,6 +9,7 @@ template<typename T, int size>
 class TPQueue {
 T* queue;
 int current;
+
  public:
   TPQueue() {
     queue = new T[size];
