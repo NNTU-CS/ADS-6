@@ -1,17 +1,17 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#inlude <cassert>
 
 template<typename T, int size>
 class TPQueue {
-  private:
+ private:
     T* arr;
     int SIZE;
     int begin, end, count;
 
-  public:
-    TQueue(int sizeQueue) {
-        SIZE = sizeQueue;
+ public:
+    TQueue() {
         begin = 0;
         end = 0;
         count = 0;
