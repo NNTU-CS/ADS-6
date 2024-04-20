@@ -4,7 +4,36 @@
 
 template<typename T, int size>
 class TPQueue {
-  // реализация шаблона очереди с приоритетом на кольцевом буфере
+T* queue;
+int current;
+public:
+  TPQueue() {
+    queue = new T[size];
+    current = 0;
+  }
+
+  
+  void push(T elm) {
+    
+    SYM temp = (SYM)elm;
+    
+    if (current == 0) {
+      queue[0] = elm;
+      current++;
+    }
+    else {
+      queue[current++] = elm;
+    }
+  }
+
+  T pop() {
+    if (current == 0) {
+      return T();
+    }
+    else {
+      return queue[--current];
+    }
+  }
 };
 
 struct SYM {
