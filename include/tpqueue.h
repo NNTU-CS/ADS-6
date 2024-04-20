@@ -60,7 +60,8 @@ T TPQueue<T, size>::pop() {
             }
         }
 
-        for (int i = highestPriorityIndex; i != (end == 0 ? size - 1 : end - 1); ++i) {
+        for (int i = highestPriorityIndex;
+             i != (end == 0 ? size - 1 : end - 1); ++i) {
             arr[i % size] = arr[(i + 1) % size];
         }
         --end;
