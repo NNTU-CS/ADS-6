@@ -16,9 +16,9 @@ public:
  void push(const T& elem) { 
     if (count < size) {
         int pos = end;
-        while (pos > begin && elem > data[(pos - 1) % size]) {
-            data[pos % size] = data[(pos - 1) % size];
-            pos--;
+        while (pos != begin && elem > data[(pos - 1 + size) % size]) {
+            data[pos % size] = data[(pos - 1 + size) % size];
+            pos = (pos - 1 + size) % size;
         }
         data[pos % size] = elem;
         end = (end + 1) % size;
@@ -26,7 +26,7 @@ public:
     } else { 
         throw std::out_of_range("queue is full");
     }
- }
+}
 
  T pop() {
         if (!isEmpty()) {
