@@ -5,26 +5,29 @@
 template <typename T, int size>
 class TPQueue {
  private:
-  int end = 0, begin = 0, count;
-  T* arr;
+  int end, begin, count;
+  T* a;
 
  public:
-  TPQueue() : arr(new T[size]), begin(0), end(0), count(0) {}
-  void push(const T& value) {
-    int i;
-    for (i = end; i >= begin; i--) {
-      if (value.prior > arr[i].prior)
-        arr[i + 1] = arr[i];
-      else
+  TPQueue() : a(new T[size]), begin(0), end(0), count(0) {}
+  void push(const T& t) {
+    count++;
+    int p = end;
+    for (int i = end; i >= begin; i--) {
+      if (t.prior > a[i].prior) {
+        p = i;
         break;
+      }
     }
-
-    arr[i + 1] = value;
+    for (int i = end; i > p; i--) a[i % size] = a[(i - 1) % size];
+    a[p % size] = t;
     end++;
   }
   T& pop() {
-    end--;
-    return arr[begin++ % size];
+    if (count != 0) {
+      count--;
+      return a[begin++ % size];
+    }
   }
 };
 
