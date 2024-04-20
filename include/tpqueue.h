@@ -15,18 +15,22 @@ class TPQueue {
       throw std::string("FULL!");
     ++count;
     int pos = last;
+    //находим нужную позицию
     for (int i = first; i < last; i++)
       if (arr[i].prior < data.prior) {
         pos = i;
         break;
+      }
+    //сдвигаем
     for (int i = last; i> pos; i--)
       arr[i % size] = arr[(i - 1) % size];
+    //вставляем value
     arr[pos % size] = data;
     ++last;
   }
   T& pop() {
     if (count == 0) {
-      throw std::string("Empty!");
+      throw std::string("EMPTY!");
     } else {
       count--;
       return arr[first++ % size];
