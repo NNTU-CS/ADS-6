@@ -11,7 +11,7 @@ struct SYM {
 
 template<typename T, int size>
 class TPQueue {
-private:
+ private:
     struct Node {
         T data;
         Node* next;
@@ -20,7 +20,7 @@ private:
     Node* head;
     std::size_t count;
 
-public:
+ public:
     TPQueue() : head(nullptr), count(0) {}
 
     ~TPQueue() {
