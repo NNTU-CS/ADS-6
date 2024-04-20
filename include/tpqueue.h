@@ -8,6 +8,7 @@ class TPQueue {
     int begin;
     int end;
     int count;
+
  public:
     TPQueue() : begin(0), end(0), count(0) {
         arr = new T[size];
@@ -17,22 +18,21 @@ class TPQueue {
         delete[] arr;
     }
 
-    void push(const T& item) {
-        if (count < size) {
-            if (count == 0) {
-                arr[end] = item;
-            } else {
-                int current = end;
-                while (arr[current].prior >= item.prior && current != begin) {
-                    int prev = (current == 0) ? size - 1 : current - 1;
-                    arr[current] = arr[prev];
-                    current = prev;
-                }
-                arr[current] = item;
-            }
-            end = (end + 1) % size;
-            count++;
+void push(const T& item) {
+        if (count >= size) {
+            throw std::string("Full!!!");
         }
+
+        int i = end - 1;
+
+        while (i >= begin && arr[i % size].prior < item.prior) {
+            arr[(i + 1) % size] = arr[i % size];
+            i--;
+        }
+
+        arr[(i + 1) % size] = item;
+        end++;
+        count++;
     }
 
     T pop() {
