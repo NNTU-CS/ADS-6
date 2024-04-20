@@ -48,7 +48,7 @@ struct SYM {
   char ch;
   int prior;
 
-  bool operator>(const SYM& other){
+  bool operator>(const SYM& other) const {
     return prior > other.prior;
   }
 };
