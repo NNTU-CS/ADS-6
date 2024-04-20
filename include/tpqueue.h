@@ -15,14 +15,14 @@ class TPQueue {
   TPQueue() : count(0), begin(0), end(0) {}
 
   void push(const T &elem) {
-    if (count < size) {
+    if (count < SIZE) {
       int pos = end;
-      while (pos != begin && elem > data[(pos - 1 + size) % size]) {
-        data[pos % size] = data[(pos - 1 + size) % size];
-        pos = (pos - 1 + size) % size;
+      while (pos != begin && elem > data[(pos - 1 + SIZE) % SIZE]) {
+        data[pos % SIZE] = data[(pos - 1 + SIZE) % SIZE];
+        pos = (pos - 1 + SIZE) % SIZE;
       }
-      data[pos % size] = elem;
-      end = (end + 1) % size;
+      data[pos % SIZE] = elem;
+      end = (end + 1) % SIZE;
       count++;
     } else {
       throw std::out_of_range("queue is full");
@@ -32,7 +32,7 @@ class TPQueue {
   T pop() {
     if (!isEmpty()) {
       T elem = data[begin];
-      begin = (begin + 1) % size;
+      begin = (begin + 1) % SIZE;
       count--;
       return elem;
     } else {
