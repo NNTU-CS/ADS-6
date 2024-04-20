@@ -1,62 +1,53 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-#include <iostream>
-
 template<typename T, int size>
-struct SYM {
-    char ch;
-    int prior;
-};
-
 class TPQueue {
  private:
-    SYM* queue;
-    int size;
-    int capacity;
-    int front;
-    int rear;
-
+    T* arr;
+    int begin;
+    int end;
+    int count;
  public:
-    TPQueue(int capacity) {
-        this->capacity = capacity;
-        queue = new SYM[capacity];
-        size = 0;
-        front = 0;
-        rear = -1;
+    TPQueue() : begin(0), end(0), count(0) {
+        arr = new T[size];
     }
 
     ~TPQueue() {
-        delete[] queue;
+        delete[] arr;
     }
 
-    void push(SYM item) {
-        if (size == capacity) {
-            std::cout << "Queue is full, cannot enqueue more items." << std::endl;
-            return;
-        }
-        int i;
-        for (i = size - 1; i >= 0; i--) {
-            if (queue[i].prior < item.prior) {
-                queue[i + 1] = queue[i];
+    void push(const T& item) {
+        if (count < size) {
+            if (count == 0) {
+                arr[end] = item;
             } else {
-                break;
+                int current = end;
+                while (arr[current].prior >= item.prior && current != begin) {
+                    int prev = (current == 0) ? size - 1 : current - 1;
+                    arr[current] = arr[prev];
+                    current = prev;
+                }
+                arr[current] = item;
             }
+            end = (end + 1) % size;
+            count++;
         }
-        queue[i + 1] = item;
-        size++;
     }
 
-    SYM pop() {
-        if (size == 0) {
-            std::cout << "Queue is empty, cannot dequeue more items." << std::endl;
-            exit(1);
+    T pop() {
+        if (count > 0) {
+            T item = arr[begin];
+            begin = (begin + 1) % size;
+            count--;
+            return item;
         }
-        SYM item = queue[front];
-        front = (front + 1) % capacity;
-        size--;
-        return item;
+        throw "Queue is empty";
     }
+};
+struct SYM {
+    char ch;
+    int prior;
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
