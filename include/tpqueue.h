@@ -16,8 +16,8 @@ class TPQueue {
     data[index] = elem;
     index += 1;
     for (int t = start; t < index; t++) {
-      for (int i = start; i < index - 1; j++) {
-        if data[i + 1].prior > (data[i].prior) {
+      for (int i = start; i < index - 1; i++) {
+        if (data[i + 1].prior) > (data[i].prior) {
           T b = data[i];
           data[i] = data[i + 1];
           data[i + 1] = b;
@@ -25,7 +25,7 @@ class TPQueue {
       }
     }
   }
-}
+};
 struct SYM {
   char ch;
   int prior;
