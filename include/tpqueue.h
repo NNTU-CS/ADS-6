@@ -53,6 +53,7 @@ T TPQueue<T, size>::pop() {
         T highestPriorityItem = arr[begin];
         int highestPriorityIndex = begin;
 
+        // Найти элемент с наивысшим приоритетом
         for (int i = begin + 1; i != (end == 0 ? size : end); ++i) {
             if (arr[i % size].prior < highestPriorityItem.prior) {
                 highestPriorityItem = arr[i % size];
@@ -60,8 +61,9 @@ T TPQueue<T, size>::pop() {
             }
         }
 
+        // Удалить элемент с наивысшим приоритетом из очереди
         for (int i = highestPriorityIndex;
-             i != (end == 0 ? size - 1 : end - 1); ++i) {
+            i != (end == 0 ? size - 1 : end - 1); ++i) {
             arr[i % size] = arr[(i + 1) % size];
         }
         --end;
