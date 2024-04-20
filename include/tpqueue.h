@@ -19,18 +19,19 @@ class TPQueue {
         } else {
             if (count == 0) {
                 arr[begin] = item;
+                count++;
             } else {
                 for (curNum = end; curNum >= begin; curNum--) {
                     if (item.prior > arr[curNum % size].prior) {
-                        arr[(curNum++) % size] = arr[curNum % size];
+                        arr[(curNum + 1) % size] = arr[curNum % size];
                     } else {
                         break;
                     }
                 }
                 end++;
-                arr[(curNum++) % size] = item;
+                arr[(curNum + 1) % size] = item;
+                count++;
             }
-            count++;
         }
     }
     T pop() {
