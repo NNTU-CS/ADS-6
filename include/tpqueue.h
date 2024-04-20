@@ -12,7 +12,18 @@ class TPQueue {
  public:
     TPQueue(): begin(0), end(0), count(0), arr(new T[size]) {}
     void push(const T& item) {
-
+        int currentNumber;
+        if (count >= size)
+            throw std::string("Full!!!");
+        else {
+            for (currentNumber = end; currentNumber > begin; currentNumber--) {
+                if (item.prior > arr[currentNumber % size].prior) {
+                    arr[(currentNumber++) % size] = item;
+                }
+            }
+            end++;
+        }
+        count++;
     }
     T pop() {
         if (count == 0)
