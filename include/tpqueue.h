@@ -13,22 +13,22 @@ class TPQueue {
  public:
     TPQueue(): begin(0), end(0), count(0), arr(new T[size]) {}
     void push(const T& item) {
-        int currentNumber;
+        int curNum;
         if (count >= size) {
             throw std::string("Full!!!");
         } else {
             if (count == 0) {
                 arr[begin] = item;
             } else {
-                for (currentNumber = end; currentNumber > begin; currentNumber--) {
-                    if (item.prior > arr[currentNumber % size].prior) {
-                        arr[(currentNumber++) % size] = arr[currentNumber % size];
+                for (curNum = end; curNum >= begin; curNum--) {
+                    if (item.prior > arr[curNum % size].prior) {
+                        arr[(curNum++) % size] = arr[curNum % size];
                     } else {
                         break;
                     }
                 }
                 end++;
-                arr[(currentNumber++) % size] = item;
+                arr[(curNum++) % size] = item;
             }
             count++;
         }
@@ -36,8 +36,7 @@ class TPQueue {
     T pop() {
         if (count == 0) {
             throw std::string("Empty!");
-        }
-        else {
+        } else {
             count--;
             return arr[(begin++) % size];
         }
