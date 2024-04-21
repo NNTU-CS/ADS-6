@@ -1,6 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#include <string>
 
 template<typename T, int size>
 class TPQueue {
@@ -28,7 +29,6 @@ class TPQueue {
     for (int i = end - 1; i >= pos; i--) {
       data[(i + 1) % size] = data[i % size];
     }
-    
     data[pos % size] = sym;
     end++;
   }
