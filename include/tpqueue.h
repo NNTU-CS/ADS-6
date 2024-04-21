@@ -19,7 +19,7 @@ class TPQueue {
 
     void push(const T& item) {
       if (cnt >= size) {
-        throw std::string("full!");
+        throw std::string("Full!!!");
       }
       int k = end;
       for (int i = begin; i < end; i++) {
@@ -41,10 +41,9 @@ class TPQueue {
         cnt--;
         return item;
       }
-      throw "Queue is empty";
+      throw std::string("Empty!!!");
     }
 };
-
 struct SYM {
   char ch;
   int prior;
