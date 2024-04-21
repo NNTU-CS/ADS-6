@@ -16,16 +16,18 @@ class TPQueue {
     };
     ITEM* head;
     ITEM* tail;
+
  public:
     TPQueue() : head(nullptr), tail(nullptr) {}
+
     ~TPQueue() {
-        while (head)
-        {
+        while (head) {
             ITEM* temp = head->next;
             delete head;
             head = temp;
         }
     }
+
     void push(const T& data) {
         ITEM* temp = new ITEM;
         temp->data = data;
@@ -52,6 +54,7 @@ class TPQueue {
             }
         }
     }
+
     T pop() {
         if (!head)
             throw std::out_of_range("Queue is empty");
