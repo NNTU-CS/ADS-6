@@ -4,7 +4,7 @@
 #include "tpqueue.h"
 
 TEST(lab6, test1) {
-    TPQueue<SYM, 5> pqueue;
+    TPQueue<SYM> pqueue;
     pqueue.push(SYM{'a', 4});
     pqueue.push(SYM{'b', 7});
     pqueue.push(SYM{'c', 6});
@@ -27,7 +27,7 @@ TEST(lab6, test1) {
 }
 
 TEST(lab6, test2) {
-    TPQueue<SYM, 5> pqueue;
+    TPQueue<SYM> pqueue;
     pqueue.push(SYM{'a', 4});
     pqueue.push(SYM{'b', 4});
     SYM c1 = pqueue.pop();
@@ -37,7 +37,7 @@ TEST(lab6, test2) {
 }
 
 TEST(lab6, test3) {
-    TPQueue<SYM, 5> pqueue;
+    TPQueue<SYM> pqueue;
     pqueue.push(SYM{'a', 4});
     pqueue.push(SYM{'b', 4});
     pqueue.push(SYM{'c', 9});
