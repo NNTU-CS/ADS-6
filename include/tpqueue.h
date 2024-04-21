@@ -1,6 +1,8 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+
+#include <stdexcept>
 #include <string>
 
 template<typename T, int size>
@@ -19,7 +21,7 @@ class TPQueue {
 
     void push(const T& item) {
       if (cnt >= size) {
-        throw "Full!!!";
+        throw std::out_of_range("Queue is full!");
       }
       int k = end;
       for (int i = begin; i < end; i++) {
@@ -41,7 +43,7 @@ class TPQueue {
         cnt--;
         return item;
       }
-      throw "Empty!!!";
+      throw std::out_of_range("Queue is empty!");
     }
 };
 struct SYM {
