@@ -24,12 +24,11 @@ class TPQueue {
         throw std::out_of_range("Queue is full!");
       }
       int k = end - 1;
-     
       while (k >= begin && array[k % size].prior < item.prior) {
        array[(k + 1) % size] = array[k % size];
        k--;
       }
-      arr[(k + 1) % size] = item;
+      array[(k + 1) % size] = item;
       end++;
       cnt++;
     }
