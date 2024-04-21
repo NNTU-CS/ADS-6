@@ -19,7 +19,7 @@ class TPQueue {
 
     void push(const T& item) {
       if (cnt >= size) {
-        throw std::string("full!")
+        throw std::string("full!");
       }
       int k = end;
       for (int i = begin; i < end; i++) {
