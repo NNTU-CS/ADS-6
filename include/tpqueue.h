@@ -4,7 +4,7 @@
 
 template<typename T, int size>
 class TPQueue {
-    T arr[5];
+    T* arr;
     int k;
 
  public:
