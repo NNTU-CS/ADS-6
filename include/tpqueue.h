@@ -2,51 +2,51 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-template<typename T, int size>
+template<typename T, const int size>
 class TPQueue {
-private:
-    T* arr; // массив с данными
-    int count; // текущее количество элементов
-    int rear; // индекс конца очереди
-    int front; // индекс начала очереди
-public:
-    TPQueue() : count(0), rear(0), front(0) {
-        arr = new T[size];
-    }
+  struct Item {
+    T data;
+    int prior;
+  };
+  Item arr[size];
+  int m = 0, end = 0;
 
-    ~TPQueue() {
-        delete[] arr;
+ public:
+  TPQueue() {
+    for (int i = 0; i < size; i++) {
+      arr[i].data = T();
+      arr[i].prior = -10;
     }
-
-    void push(const T& item, int prior) {
-        if (count < size) {
-            if (count == 0) {
-                arr[rear] = item;
-            }
-            else {
-                int i = rear - 1;
-                while (i >= front && prior > arr[i].prior) {
-                    arr[(i + 1 + size) % size] = arr[i];
-                    i--;
-                }
-                arr[(i + 1 + size) % size] = item;
-            }
-            rear = (rear + 1) % size;
-            count++;
+  }
+  void push(T sym, int priority) {
+    if (end != 0) {
+      int i = end - 1;
+      for (; i >= m; i--) {
+        if (priority > arr[i].prior) {
+          arr[i + 1].data = arr[i].data;
+          arr[i + 1].prior = arr[i].prior;
+        } else {
+          break;
         }
+      }
+      arr[++i].data = sym;
+      arr[i].prior = priority;
+      end++;
+    } else {
+      arr[0].data = sym;
+      arr[0].prior = priority;
+      end++;
     }
-
-    T pop() {
-        if (count > 0) {
-            T item = arr[front];
-            front = (front + 1) % size;
-            count--;
-            return item;
-        }
-        else {
-            return T();
-        }
+  }
+  T pop() {
+    T f = arr[m].data;
+    for (int i = m; i < end - 1; i++) {
+      arr[i].data = arr[i + 1].data;
+      arr[i].prior = arr[i + 1].prior;
     }
+    end--;
+    return f;
+  }
 };
 struct SYM {
   char ch;
