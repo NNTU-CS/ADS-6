@@ -23,18 +23,15 @@ class TPQueue {
       if (cnt >= size) {
         throw std::out_of_range("Queue is full!");
       }
-      int k = end;
-      for (int i = begin; i < end; i++) {
-        if (array[i].prior < item.prior) {
-          k = i;
-          break;
-        }
+      int k = end - 1;
+     
+      while (k >= begin && array[k % size].prior < item.prior) {
+       array[(k + 1) % size] = array[k % size];
+       k--;
       }
-      for (int i = end - 1; i >= k; i--) {
-        array[(i + 1) % size] = array[i % size];
-      }
-      array[k % size] = item;
-      begin++;
+      arr[(k + 1) % size] = item;
+      end++;
+      cnt++;
     }
     T pop() {
       if (cnt > 0) {
