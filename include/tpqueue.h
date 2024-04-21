@@ -34,9 +34,6 @@ public:
             rear = (rear + 1) % size;
             count++;
         }
-        else {
-            std::cout << "Queue is full" << std::endl;
-        }
     }
 
     T pop() {
@@ -47,15 +44,12 @@ public:
             return item;
         }
         else {
-            std::cout << "Queue is empty" << std::endl;
             return T();
         }
     }
 };
-
 struct SYM {
   char ch;
   int prior;
 };
-
 #endif  // INCLUDE_TPQUEUE_H_
