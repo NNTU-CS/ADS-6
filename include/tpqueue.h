@@ -27,7 +27,7 @@ int head, tail, count;
            arr[i] = arr[i-1];
            i = (i - 1 + size) % size;
        }
-       arr[i+1] = item;
+       arr[i] = item;
        tail = (tail + 1) % size;
        count++;
        }
