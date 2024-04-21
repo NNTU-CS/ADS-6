@@ -4,7 +4,7 @@
 #define INCLUDE_TPQUEUE_H_
 
 template<typename T, int size>
-class TPQueue {
+class TPQueue { 
 private:
     T *arr;
     int begin, end, count;
@@ -31,11 +31,9 @@ private:
     T pop() {
         if (count == 0) {
             throw std::string("Empty");
-        } 
-        else {
+        } else {
             count--;
-            return arr[begin++ % size];
-        }
+            return arr[begin++ % size]; }
     }
 };
 
