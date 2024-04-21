@@ -1,6 +1,6 @@
 // Copyright 2022 NNTU-CS
-#ifndef TPQUEUE_H
-#define TPQUEUE_H
+#ifndef INCLUDE_TPQUEUE_H_
+#define INCLUDE_TPQUEUE_H_
 
 struct SYM {
     char ch;
@@ -73,4 +73,4 @@ T TPQueue<T>::pop() {
     return data;
 }
 
-#endif // TPQUEUE_H
+#endif  // INCLUDE_TPQUEUE_H_
