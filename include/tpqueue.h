@@ -7,11 +7,11 @@ template<typename T, int size>
 class TPQueue {
 // реализация шаблона очереди с приоритетом на кольцевом буфере
 T* arr;
-int arrSize, head, tail, count;
+int head, tail, count;
 
  public:
-  TPQueue(): head(0), tail(0), count(0), arrSize(0) {
-     arr = new T[arrSize + 1];
+  TPQueue(): head(0), tail(0), count(0) {
+     arr = new T[size];
   }
 
   ~TPQueue() {
@@ -24,27 +24,30 @@ int arrSize, head, tail, count;
      } else if (tail == head) {
        arr[tail++] = item;
      } else {
-       int i = 0;
-       for (i = tail; i >= head; i--) {
-         if (arr[i].prior >= item.prior) {
+       int i = tail;
+       while (i != head && arr[i].prior >= item.prior) {
            arr[i+1] = arr[i];
-       } else {
-         break;
+           i--;
        }
        arr[i+1] = item;
        tail++;
+       count++;
        }
-     }
   }
+  
 
   T pop() {
      if (count == 0) {
       throw std::string("empty");
      } else {
-      return arr[head++ % size];
+      T item = arr[head];
+      head = (head + 1) % size;
+      count--;
+      return item;
      }
   }
 };
+
 
 struct SYM {
   char ch;
