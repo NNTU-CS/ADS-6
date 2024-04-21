@@ -21,8 +21,6 @@ int head, tail, count;
   void push(const T& item) {
      if (count == size) {
            throw std::string("full");
-     } else if (tail == head) {
-       arr[tail++] = item;
      } else {
        int i = tail;
        while (i != head && arr[i].prior >= item.prior) {
