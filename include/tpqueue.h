@@ -16,13 +16,13 @@ class TPQueue {
     int cnt;
 
  public:
-    TPQueue() : count(0), begin(0), end(0) {
+    TPQueue() : cnt(0), begin(0), end(0) {
     arr = new SYM[size + 1];
     for (int i = 0; i < size; i++)
         arr[i] = { '-', 0 };
     }
     void push(SYM a) {
-        if (!count) {
+        if (!cnt) {
             arr[begin] = a;
             cnt++;
             end = begin;
