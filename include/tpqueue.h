@@ -23,7 +23,7 @@ int head, tail, count;
            throw std::string("full");
      } else {
        int i = tail;
-       while (i != head && arr[i-1].prior >= item.prior) {
+       while (i != head && arr[i-1].prior < item.prior) {
            arr[i] = arr[i-1];
            i = (i - 1 + size) % size;
        }
