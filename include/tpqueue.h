@@ -41,7 +41,7 @@ class TPQueue {
         cnt--;
         return item;
       }
-      throw std::string("Queue empty");
+      throw "Queue is empty";
     }
 };
 
