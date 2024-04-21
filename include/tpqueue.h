@@ -30,7 +30,7 @@ class TPQueue {
                     if (str_sym.prior <= Qdata[i].prior) {
                         Qdata[i + 1] = Qdata[i];
                         if (i == -1) {
-                            Qdata[i] = str_sym;
+                            Qdata[0] = str_sym;
                             taked++;
                             break;
                         }
