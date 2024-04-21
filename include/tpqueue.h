@@ -4,8 +4,8 @@
 #define INCLUDE_TPQUEUE_H_
 
 template<typename T, int size>
-class TPQueue { 
-private:
+class TPQueue {
+ private:
     T *arr;
     int begin, end, count;
 
