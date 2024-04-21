@@ -1,26 +1,26 @@
 // Copyright 2022 NNTU-CS
-#ifndef INCLUDE_TPQUEUE_H_
-#define INCLUDE_TPQUEUE_H_
+#ifndef TPQUEUE_H
+#define TPQUEUE_H
+
+struct SYM {
+    char ch;
+    int prior;
+};
 
 template<typename T>
 class TPQueue {
-private:
+ private:
     struct ITEM {
         T data;
         ITEM* next;
     };
     ITEM* head;
     ITEM* tail;
-public:
+ public:
     TPQueue() : head(nullptr), tail(nullptr) {}
     ~TPQueue();
     void push(const T& data);
     T pop();
-};
-
-struct SYM {
-  char ch;
-  int prior;
 };
 
 template<typename T>
@@ -73,5 +73,4 @@ T TPQueue<T>::pop() {
     return data;
 }
 
-#endif  // INCLUDE_TPQUEUE_H_
-
+#endif // TPQUEUE_H
