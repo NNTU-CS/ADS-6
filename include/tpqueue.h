@@ -19,7 +19,7 @@ int head, tail, count;
   }
 
   void push(const T& item) {
-     if (count == arrSize) {
+     if (count == size) {
            throw std::string("full");
      } else if (tail == head) {
        arr[tail++] = item;
@@ -34,7 +34,6 @@ int head, tail, count;
        count++;
        }
   }
-  
 
   T pop() {
      if (count == 0) {
