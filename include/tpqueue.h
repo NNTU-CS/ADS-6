@@ -32,14 +32,14 @@ class TPQueue {
       end++;
     }
   }
- T pop() {
-   if (cnt == 0) {
+T pop() {
+  if (cnt == 0) {
      throw std::string("Empty");
-   } else {
+  } else {
      cnt--;
      return data[(begin++) % size];
-   }
- }
+  }
+}
 };
 
 struct SYM {
