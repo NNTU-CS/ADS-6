@@ -12,9 +12,8 @@ private:
  public:
     TPQueue() : begin(0), end(0), count(0), arr(new T[size]) {}
     void push(const T& item) {
-        if (count >=size) {
+        if (count >=size)
             throw std::string("Full");
-        }
         int index = end;
         count++;
         for (int i = begin; i < end; i++) {
@@ -31,8 +30,9 @@ private:
     }
     T pop() {
         if (count == 0) {
-            throw std::string("isEmpty");
-        } else {
+            throw std::string("Empty");
+        } 
+        else {
             count--;
             return arr[begin++ % size];
         }
