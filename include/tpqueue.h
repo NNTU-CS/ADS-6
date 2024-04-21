@@ -10,10 +10,10 @@ class TPQueue {
     int cnt, begin, end;
 
  public:
-    TPqueue() : begin(0), end(0), cnt(0) {
+    TPQueue() : begin(0), end(0), cnt(0) {
       array = new T[size];
     }
-    ~TPqueue() {
+    ~TPQueue() {
       delete[] array;
     }
 
