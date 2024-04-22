@@ -6,11 +6,11 @@
 
 template<typename T, int size>
 class TPQueue {
-private:
+ private:
     T* data;
     int begin, end, count;
 
-public:
+ public:
     TPQueue() : begin(0), end(0), count(0), data(new T[size]) {}
     void push(const T& item) {
         if (count >= size) {
