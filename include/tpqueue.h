@@ -3,10 +3,7 @@
 #define INCLUDE_TPQUEUE_H_
 
 #include <string>
-struct SYM {
-    char mych;
-    int priority;
-};
+
 template<typename T, int size>
 class TPQueue {
 public:
@@ -51,5 +48,8 @@ private:
     T MyData[size];
     int b, e, count;
 };
-
+struct SYM {
+    char ch;
+    int priority;
+};
 #endif  // INCLUDE_TPQUEUE_H_
