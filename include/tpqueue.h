@@ -2,6 +2,11 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+struct SYM {
+    char ch;
+    int prior;
+};
+
 template<typename T, int size>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на кольцевом буфере
@@ -56,11 +61,6 @@ public:
     ~TPQueue() {
         delete[]mas;
     }
-};
-
-struct SYM {
-  char ch;
-  int prior;
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
