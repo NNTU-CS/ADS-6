@@ -22,14 +22,14 @@ class TPQueue {
                 c++;
             } else {
                 for (p = b; p >= a; p--) {
-                    if (ai.prior > data[i % Size].prior) {
-                        data[(i + 1) % Size] = data[i % Size];
+                    if (ai.prior > data[p % Size].prior) {
+                        data[(p + 1) % Size] = data[p % Size];
                     } else {
                         break;
                     }
                 }
                 b++;
-                data[(i + 1) % Size] = ai;
+                data[(p + 1) % Size] = ai;
                 c++;
             }
         }
