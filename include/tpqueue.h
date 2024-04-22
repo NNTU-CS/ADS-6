@@ -31,6 +31,15 @@ private:
         data[i] = elem;
         ++count;
     }
+    T pop() {
+        if (count == 0) {
+            throw std::out_of_range("Queue is empty");
+        }
+
+    T tmp = arr[count - 1];
+        --count;
+        return tmp;
+    }
 };
 
 struct SYM {
