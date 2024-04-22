@@ -1,28 +1,35 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#include <stdexcept>
+#include <cstddef>
 
 template<typename T, int size>
 class TPQueue {
 private:
-    T data[Size];
-    int begin, end, count;
+    T* data;
+    std::size_t capacity;
+    std::size_t count;
 
  public:
-    TPQueue() : begin(0), end(0), count(0) {}
+    TPQueue() : data(new T[Size]), capacity(Size), count(0) {}
 
-    void push(const T &item) {
-        if (count >= Size) {
-            throw std::string("Full");
+    ~TPQueue() {
+        delete[] data;
+    }
+
+    void push(const T& elem) {
+        if (count == capacity) {
+            throw std::out_of_range("Queue is full");
         }
-        int i = end - 1;
-        while (i >= begin && item.prior > data[i % Size].prior) {
-            data[(i + 1) % Size] = data[i % Size];
-            i--;
+
+        std::size_t i = count;
+        while (i > 0 && data[i - 1].prior >= elem.prior) {
+            data[i] = data[i - 1];
+            --i;
         }
-        data[(i + 1) % Size] = item;
-        end = (end + 1) % Size;
-        count++;
+        data[i] = elem;
+        ++count;
     }
 };
 
