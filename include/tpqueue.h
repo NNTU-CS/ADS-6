@@ -3,7 +3,7 @@
 #define INCLUDE_TPQUEUE_H_
 #include <string>
 
-template<typename T, int size>
+template<typename T, int Size>
 class TPQueue {
  private:
     T data[Size];
