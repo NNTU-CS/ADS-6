@@ -10,12 +10,12 @@ struct SYM {
 template<typename T, int size>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на кольцевом буфере
-private:
+ private:
     SYM* mas;
     int counter;
     int head, tail;
 
-public:
+ public:
     TPQueue() : counter(0), head(0), tail(0) {
         mas = new SYM[size + 1];
         for (int j = 0; j < size; j++)
@@ -26,8 +26,7 @@ public:
             mas[head] = c;
             counter++;
             tail = head;
-        }
-        else {
+        } else {
             int j = tail;
             mas[j + 1] = c;
             while (j >= head) {
@@ -47,8 +46,7 @@ public:
         if (!counter) {
             SYM e{ '0', -2 };
             return e;
-        }
-        else {
+        } else {
             SYM mp = mas[head];
             for (int j = 0; j < counter - 1; j++) {
                 mas[j] = mas[j + 1];
