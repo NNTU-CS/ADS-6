@@ -45,9 +45,8 @@ class TPQueue {
     T MyData[size];
     int b, e, count;
 };
-struct SYM
-  {
+struct SYM{
     char ch;
     int priority;
-  };
+          };
 #endif  // INCLUDE_TPQUEUE_H_
