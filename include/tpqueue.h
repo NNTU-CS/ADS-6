@@ -21,7 +21,7 @@ public:
         for (int j = 0; j < size; j++)
             mas[j] = { '-', 0 };
     }
-    void push_unit(SYM c) {
+    void push(SYM c) {
         if (!counter) {
             mas[head] = c;
             counter++;
@@ -30,7 +30,7 @@ public:
         else {
             int j = tail;
             mas[j + 1] = c;
-            while (j >= begin) {
+            while (j >= head) {
                 if (mas[j].prior < mas[j + 1].prior) {
                     SYM mp = mas[j];
                     mas[j] = mas[j + 1];
@@ -43,7 +43,7 @@ public:
         }
     }
 
-    SYM pop_unit() {
+    SYM pop() {
         if (!counter) {
             SYM e{ '0', -2 };
             return e;
