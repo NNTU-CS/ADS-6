@@ -24,7 +24,7 @@ class TPQueue {
         } else {
             int i = first;
             int j = first;
-            while (value.prior >= arr[i].prior) {
+            while (value.prior > arr[i].prior) {
                 if (value.prior < arr[i].prior) {
                     j = i;
                 }
@@ -42,7 +42,7 @@ class TPQueue {
         if (isEmpty()) {
             throw std::string("Empty");
         } else {
-            --count;
+            count--;
             return arr[first++ % size];
         }
     }
