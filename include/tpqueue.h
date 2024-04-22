@@ -6,7 +6,7 @@
 
 template<typename T, int size>
 class TPQueue {
-  public:
+   public:
      TPQueue() : b(0), e(0), count(0) {}
 
     void push(const T& elem) {
@@ -40,11 +40,13 @@ class TPQueue {
             return MyData[b++ % size];
         }
     }
-  private:
+
+   private:
     T MyData[size];
     int b, e, count;
 };
- struct SYM {
+struct SYM
+  {
     char ch;
     int priority;
   };
