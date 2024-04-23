@@ -4,18 +4,18 @@
 
 #include <string>
 
-template<typename T, int Size>
+template<typename T, int size>
 class TPQueue {
  private:
-    T inform[Size];
+    T inform[size];
     int nach, end, k;
 
  public:
-    TPQueue() : nach(0), end(0), k(0) {}
+    TPQueue() : nach(0), end(0), k(0) { inform = new T[size]; }
 
     void push(const T &item) {
         int i;
-        if (k >=Size) {
+        if (k >=size) {
             throw std::string("full");
         } else {
             if (k == 0) {
@@ -23,14 +23,14 @@ class TPQueue {
                 k++;
             } else {
                 for (i = end; i >= nach; i--) {
-                    if (item.prior > inform[i % Size].prior) {
-                        inform[(i + 1) % Size] = inform[i % Size];
+                    if (item.prior > inform[i % size].prior) {
+                        inform[(i + 1) % size] = inform[i % size];
                     } else {
                         break;
                     }
                 }
                 end++;
-                inform[(i + 1) % Size] = item;
+                inform[(i + 1) % size] = item;
                 k++;
             }
         }
@@ -41,7 +41,7 @@ class TPQueue {
             throw std::string("empty");
         } else {
             k--;
-            return inform[nach++ % Size];
+            return inform[nach++ % size];
         }
     }
 };
