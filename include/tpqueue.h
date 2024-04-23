@@ -9,6 +9,7 @@ class TPQueue {
  private:
     T inform[Size];
     int nach, end, k;
+
  public:
     TPQueue() : nach(0), end(0), k(0) {}
 
