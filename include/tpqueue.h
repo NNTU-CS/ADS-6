@@ -11,7 +11,7 @@ class TPQueue {
     int nach, end, k;
 
  public:
-    TPQueue() : nach(0), end(0), k(0) { inform = new T[size]; }
+    TPQueue() : nach(0), end(0), k(0) {}
 
     void push(const T &item) {
         int i;
