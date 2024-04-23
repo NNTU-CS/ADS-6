@@ -6,6 +6,7 @@
 
 template<typename T, int Size>
 class TPQueue {
+
     private:
         T inform[Size];
         int nach, end, k;
