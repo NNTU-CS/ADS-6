@@ -2,14 +2,53 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-template<typename T, int size>
+#include <string>
+
+template<typename T, int Size>
 class TPQueue {
-  // реализация шаблона очереди с приоритетом на кольцевом буфере
+private:
+    T data[Size];
+    int begin, end, count;
+
+public:
+    TPQueue() : begin(0), end(0), count(0) {}
+
+    void push(const T &item) {
+        int j;
+        if (count >= Size) {
+            throw std::string("Full");
+        } else {
+            if (count == 0) {
+                data[begin] = item;
+                count++;
+            } else {
+                for (j = end; j >= begin; j--) {
+                    if (item.prior > data[j % Size].prior) {
+                        data[(j + 1) % Size] = data[j % Size];
+                    } else {
+                        break;
+                    }
+                }
+                end++;
+                data[(j + 1) % Size] = item;
+                count++;
+            }
+        }
+    }
+
+    T pop() {
+        if (count == 0) {
+            throw std::string("Empty");
+        } else {
+            count--;
+            return data[begin++ % Size];
+        }
+    }
 };
 
 struct SYM {
-  char ch;
-  int prior;
+    char ch;
+    int prior;
 };
 
-#endif  // INCLUDE_TPQUEUE_H_
+#endif  // INCLUDE_TPQUEUE_H__
