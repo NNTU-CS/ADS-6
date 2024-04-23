@@ -4,8 +4,9 @@
 int main() {
     TPQueue<SYM, 5> pqueue;
     pqueue.push(SYM{'a', 4});
-    pqueue.push(SYM{'b', 7});
+    pqueue.push(SYM{'b', 4});
+    pqueue.push(SYM{'c', 9});
     SYM c1 = pqueue.pop();
     SYM c2 = pqueue.pop();
-    return 0;
+    SYM c3 = pqueue.pop();
 }
