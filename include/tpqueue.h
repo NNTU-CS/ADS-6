@@ -10,31 +10,31 @@ private:
     T inform[Size];
     int nach, end, k;
 
-public:
+    public:
     TPQueue() : nach(0), end(0), k(0) {}
 
-    void push(const T &item) {
-        int i;
-        if (k >= Size) {
-            throw std::string("full");
-        } else {
-            if (k == 0) {
-                inform[nach] = item;
-                k++;
+        void push(const T &item) {
+            int i;
+            if (k >= Size) {
+                throw std::string("full");
             } else {
-                for (i = end; i >= nach; i--) {
-                    if (item.prior > inform[i % Size].prior) {
-                        inform[(i + 1) % Size] = inform[i % Size];
-                    } else {
-                        break;
+                if (k == 0) {
+                    inform[nach] = item;
+                    k++;
+                } else {
+                    for (i = end; i >= nach; i--) {
+                        if (item.prior > inform[i % Size].prior) {
+                            inform[(i + 1) % Size] = inform[i % Size];
+                        } else {
+                            break;
+                        }
                     }
+                    end++;
+                    inform[(i + 1) % Size] = item;
+                    k++;
                 }
-                end++;
-                inform[(i + 1) % Size] = item;
-                k++;
             }
         }
-    }
 
     T pop() {
         if (k == 0) {
