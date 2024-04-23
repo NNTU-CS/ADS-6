@@ -2,17 +2,19 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 #include <string>
+/*
 
+*/
 template<typename T, int Size>
 class TPQueue {
-private:
+ private:
     T items[Size];
     int front_index, rear_index, num_items;
 
-public:
+ public:
     TPQueue() : front_index(0), rear_index(0), num_items(0) {}
 
-    void add(const T &item) {
+    void push(const T &item) {
         int position;
         if (num_items >= Size) {
             throw std::string("Full");
@@ -21,7 +23,9 @@ public:
                 items[front_index] = item;
                 num_items++;
             } else {
-                for (position = rear_index; position >= front_index; position--) {
+                for (position = rear_index;
+                     position >= front_index;
+                     position--) {
                     if (item.prior > items[position % Size].prior) {
                         items[(position + 1) % Size] = items[position % Size];
                     } else {
@@ -35,7 +39,7 @@ public:
         }
     }
 
-    T remove() {
+    T pop() {
         if (num_items == 0) {
             throw std::string("Queue is empty");
         } else {
