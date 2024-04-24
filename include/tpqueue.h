@@ -2,30 +2,41 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+#include <string>
+
 template<typename T, int size>
 class TPQueue {
-private:
-    T data[100] = {};
-    int index = 0, start = 0;
+ private:
+    int nachalo, konec, counter;
+    T *data;
 
-public:
+ public:
+    TPQueue() : nachalo(0), konec(0), counter(0), data(new T[size]) {}
+
     T pop() {
-        start += 1;
-        return data[start - 1];
+        if (counter == 0) {
+            throw std::string("Empty!!!");
+        } else {
+            counter--;
+            return data[nachalo++ % size];
+        }
     }
 
-    void push(T elem) {
-        data[index] = elem;
-        index += 1;
-        for (int t = start; t < index; t++) {
-            for (int i = start; i < index - 1; i++) {
-                if (data[i + 1].prior > data[i].prior) {
-                    T b = data[i];
-                    data[i] = data[i + 1];
-                    data[i + 1] = b;
-                }
+    void push(const T &item) {
+        if (counter >= size)
+            throw std::string("Full!!!");
+        counter++;
+        int Index = konec;
+        for (int y = nachalo; y < konec; y++) {
+            if (data[y].prior < item.prior) {
+                Index = y;
+                break;
             }
         }
+        for (int y = konec; y > Index; y--)
+            data[y % size] = data[(y - 1) % size];
+        data[Index % size] = item;
+        konec++;
     }
 };
 
