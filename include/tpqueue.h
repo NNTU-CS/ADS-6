@@ -10,7 +10,7 @@ class TPQueue {
   int begin, end, count;
 
  public:
-  TPQueue(int sizeQueue) : size(sizeQueue), begin(0), end(0), count(0) {
+  TPQueue(int sizeQueue) : begin(0), end(0), count(0) {
     arr = new T[size+1];
   }
   ~TPQueue() {
