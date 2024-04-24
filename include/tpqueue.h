@@ -22,13 +22,13 @@ class TPQueue {
     count++;
     int i = end;
     for (; i >= begin; i--) {
-			   if (arr[i].prior < item.prior)
-				    arr[i + 1] = arr[i];
-			   else
-				    break;
-		  }
-		  arr[i + 1] = item;
-		  end++;
+      if (arr[i].prior < item.prior)
+        arr[i + 1] = arr[i];
+      else
+        break;
+    }
+    arr[i + 1] = item;
+    end++;
   }
   T pop() {
     assert(count > 0);
