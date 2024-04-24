@@ -4,7 +4,18 @@
 
 template<typename T, int size>
 class TPQueue {
-  // реализация шаблона очереди с приоритетом на кольцевом буфере
+private:
+  T* arr;
+  int size, begin, end, count;
+
+public:
+  TQueue(int = 100);
+  ~TQueue();
+  void push(const T&);
+  T pop();
+  T get() const;
+  bool isEmpty() const;
+  bool isFull() const;
 };
 
 struct SYM {
