@@ -18,7 +18,6 @@ class TPQueue {
   }
   void push(const T& item) {
     assert(count < size);
-    arr[end++] = item;
     count++;
     int i = end;
     for (; i >= begin; i--) {
