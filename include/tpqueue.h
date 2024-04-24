@@ -20,15 +20,20 @@ class TPQueue {
     assert(count < size);
     arr[end++] = item;
     count++;
-    if (end > size)
-      end -= size + 1;
+    int i = end;
+    for (; i >= begin; i--) {
+			   if (arr[i].prior < item.prior)
+				    arr[i + 1] = arr[i];
+			   else
+				    break;
+		  }
+		  arr[i + 1] = item;
+		  end++;
   }
   T pop() {
     assert(count > 0);
     T item = arr[begin++];
     count--;
-    if (begin > size)
-      begin -= size + 1;
     return item;
   }
   T get() const {
