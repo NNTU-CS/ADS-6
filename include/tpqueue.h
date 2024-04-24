@@ -9,13 +9,37 @@ private:
   int size, begin, end, count;
 
 public:
-  TQueue(int = 100);
-  ~TQueue();
-  void push(const T&);
-  T pop();
-  T get() const;
-  bool isEmpty() const;
-  bool isFull() const;
+  TQueue(int sizeQueue) : size(sizeQueue), begin(0), end(0), count(0) {
+    arr = new T[size+1];
+  }
+  ~TQueue() {
+    delete[] arr;
+  }
+  void push(const T& item) {
+    assert(count < size);
+    arr[end++] = item;
+    count++;
+    if (end > size)
+      end -= size + 1;
+  }
+  T pop() {
+    assert(count > 0);
+    T item = arr[begin++];
+    count--;
+    if (begin > size)
+      begin -= size + 1;
+    return item;
+  }
+  T get() const {
+    assert(count > 0);
+    return arr[begin];
+  }
+  bool isEmpty() const {
+    return count == 0;
+  }
+  bool isFull() const {
+    return count == size;
+  }
 };
 
 struct SYM {
