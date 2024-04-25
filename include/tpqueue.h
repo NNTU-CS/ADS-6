@@ -3,29 +3,29 @@
 #define INCLUDE_TPQUEUE_H_
 #include <cassert>
 
-template<typename T, int size>
+template<typename T, int Size>
 class TPQueue {
  private:
-  T arr[size];
+  T arr[Size];
   int begin, end, count;
 
  public:
   TPQueue() : begin(0), end(0), count(0) {}
   ~TPQueue() {}
   void push(const T& item) {
-    assert(count < size);
+    assert(count < Size);
     count++;
     int i = end;
-    while (i != begin && item.prior > arr[(i - 1 + size) % size].prior) {
-      arr[i % size] = arr[(i - 1 + size) % size];
-      i = (i - 1 + size) % size;
+    while (i != begin && item.prior > arr[(i - 1 + Size) % Size].prior) {
+      arr[i % Size] = arr[(i - 1 + Size) % Size];
+      i = (i - 1 + Size) % Size;
     }
-    arr[i % size] = item;
-    end = (end + 1) % size;
+    arr[i % Size] = item;
+    end = (end + 1) % Size;
   }
   T pop() {
     assert(count > 0);
-    T item = arr[begin++ % size];
+    T item = arr[begin++ % Size];
     count--;
     return item;
   }
