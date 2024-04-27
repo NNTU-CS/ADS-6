@@ -7,7 +7,7 @@ template<typename T, int size>
 class TPQueue {
  private:
     T *arr;
-int head, int tail, int count;
+int head, tail, count;
 
  public:
     TPQueue():head(0), tail(0), count(0), arr(new T[size]) {}
