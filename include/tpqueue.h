@@ -4,7 +4,6 @@
 
 template<typename T, int size>
 class TPQueue {
-
 private:
     T* arr;
     int count;
@@ -17,7 +16,7 @@ public:
     ~TPQueue() {
         delete[] arr;
     }
-    void insert(const T& item) {
+        void insert(const T& item) {
         if (count == size) {
             throw "Queue is full";
         }
