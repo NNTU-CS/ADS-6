@@ -24,7 +24,7 @@ int head, tail, count;
       }
      }
      for (int i = tail; i > inx; i--) {
-      arr[inx % size] = arr[(i - 1) % size];
+      arr[i % size] = arr[(i - 1) % size];
      }
      arr[inx % size] = item;
      tail++;
