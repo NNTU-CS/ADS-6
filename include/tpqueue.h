@@ -2,22 +2,24 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+#include <string>
+
 template<typename T, int size>
 class TPQueue {
  private:
-    T arr[size];
+    T* arr;
     int first;
     int last;
+
  public:
-    TPQueue() :first(0), last(0) {};
+    TPQueue() :first(0), last(0), arr(new T[size]) { }
     void push(T x) {
         if (last - first >= size)
             throw std::string("Full!");
         int index = last;
-        SYM sx = x;
         for (int i = first; i < last; i++) {
-            SYM s = arr[i % size];
-            if (sx.prior > s.prior) {
+            T s = arr[i % size];
+            if (x.prior > s.prior) {
                 index = i;
                 break;
             }
