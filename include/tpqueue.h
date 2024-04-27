@@ -38,7 +38,7 @@ class TPQueue {
         }
         count++;
     }
-    T get() {
+    T get {
         if (count == 0) {
             throw "Queue is empty";
         }
