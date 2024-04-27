@@ -32,7 +32,7 @@ int head, tail, count;
        if (count == 0) {
             throw std::string("queue is empty");
         } else {
-        count - 1;
+        count --;
         return arr[head++ % size];
         }
     }
