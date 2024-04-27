@@ -49,6 +49,7 @@ public:
         count--;
         return tmp;
     }
+    }
 };
 
 struct SYM {
