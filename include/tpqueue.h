@@ -28,7 +28,7 @@ int count;
      for (int i = tail; i > inx; i-1) {
       arr[inx % size] = arr[(i - 1) % size];
      }
-     arr [inx % size} = item;
+     arr[inx % size] = item;
     }
     T pop() {
        if (count == 0) {
