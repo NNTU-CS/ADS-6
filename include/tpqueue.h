@@ -6,13 +6,13 @@
 
 template<typename T, int size>
 class TPQueue {
-private:
+ private:
     T* arr;
     int count;
     int begin;
     int end;
 
-public:
+ public:
     TPQueue() : count(0), begin(0), end(0) {
         arr = new T[size + 1];
     ~TPQueue() {
