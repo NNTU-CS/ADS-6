@@ -27,6 +27,7 @@ int head, tail, count;
       arr[inx % size] = arr[(i - 1) % size];
      }
      arr[inx % size] = item;
+     tail++;
     }
     T pop() {
        if (count == 0) {
