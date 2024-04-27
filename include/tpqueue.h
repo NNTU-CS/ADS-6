@@ -23,7 +23,7 @@ int head, tail, count;
        break;
       }
      }
-     for (int i = tail; i > inx; i-1) {
+     for (int i = tail; i > inx; i--) {
       arr[inx % size] = arr[(i - 1) % size];
      }
      arr[inx % size] = item;
