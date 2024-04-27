@@ -19,7 +19,7 @@ int head, tail, count;
      count++;
      for (int i = head; i < tail; i++) {
       if (arr[i].priority < item.priority) {
-       inx = 1;
+       inx = i;
        break;
       }
      }
