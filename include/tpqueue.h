@@ -5,6 +5,7 @@
 template<typename T, int size>
 class TPQueue {
 private:
+
     T* arr;
     int count;
     int begin;
