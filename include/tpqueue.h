@@ -6,17 +6,17 @@ template<typename T, int size>
 class TPQueue {
 private:
   T data[100] = {};
-  int ind = 0, str = 0;
+  int ind = 0, start = 0;
 public:
   T pop() {
-    str += 1;
-    return data[str - 1];
+    start += 1;
+    return data[start - 1];
   }
 void push(T el) {
     data[ind] = el;
     ind += 1;
-    for (int t = str; t < ind; t++) {
-      for (int i = str; i < ind - 1; i++) {
+    for (int t = start; t < ind; t++) {
+      for (int i = start; i < ind - 1; i++) {
         if (data[i + 1].prior > data[i].prior) {
           T k = data[i];
           data[i] = data[i + 1];
