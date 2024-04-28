@@ -7,7 +7,7 @@ class TPQueue {
   // реализация шаблона очереди с приоритетом на кольцевом буфере
  private:
 T data[100] = {};
-int ind = 0, start = 0;
+int start = 0, ind = 0;
  public:
 T pop() {
   start += 1;
