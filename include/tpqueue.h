@@ -4,10 +4,10 @@
 
 template<typename T, int size>
 class TPQueue {
-private:
+ private:
   T data[100] = {};
   int ind = 0, start = 0;
-public:
+   public:
   T pop() {
     start += 1;
     return data[start - 1];
