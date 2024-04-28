@@ -7,14 +7,12 @@ class TPQueue {
 private:
   T data[100] = {};
   int ind = 0, str = 0;
-
- public:
+public:
   T pop() {
     str += 1;
     return data[str - 1];
   }
-
-  void push(T el) {
+void push(T el) {
     data[ind] = el;
     ind += 1;
     for (int t = str; t < ind; t++) {
