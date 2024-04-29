@@ -2,9 +2,6 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-#pragma once
-#include <iostream>
-
 template <typename T, int size>
 class TPQueue {
  private:
