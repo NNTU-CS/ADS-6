@@ -20,13 +20,13 @@ class TPQueue {
     }
 
     void push(const Type& element) {
-        if (count >= element) {
+        if (count == element) {
             throw std::out_of_range("full");
         }
 
         std::size_t i = count;
         while (i > 0 && templ[i - 1].prior >= element.prior) {
-            templi] = templ[i - 1];
+            templ[i] = templ[i - 1];
             i--;
         }
         templ[i] = element;
