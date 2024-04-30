@@ -2,6 +2,9 @@
 #ifndef INCLUDETPQUEUE_H
 #define INCLUDETPQUEUE_H
 
+#include <stdexcept>
+#include <cstddef>
+
 template<typename T, int size>
 class TPQueue {
  private:
