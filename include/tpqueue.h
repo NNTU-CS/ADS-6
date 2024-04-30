@@ -23,13 +23,11 @@ class TPQueue {
     if (fullness == size) {
       return;
     }
-
     int in_index = end_index;
     while (true) {
-      if ((in_index == start_index)
-
-          || ((arr[in_index - 1].prior >= new_elem.prior) &&
-              (arr[in_index - 1].prior != 0))) {
+      if ((in_index == start_index) ||
+          ((arr[in_index - 1].prior >= new_elem.prior) &&
+           (arr[in_index - 1].prior != 0))) {
         break;
       }
       in_index = norm(in_index - 1);
