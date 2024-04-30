@@ -9,7 +9,7 @@ template<typename Type, int size>
 class TPQueue {
  private:
     Type* templ;
-    T* data;
+    Type* data;
     int begin, end, count;
 
  public:
