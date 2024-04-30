@@ -13,10 +13,10 @@ class TPQueue {
     std::size_t count;
 
  public:
-    TPQueue() : mass(new Type[size]), capacity(size), count(0) {}
+    TPQueue() : templ(new Type[size]), capacity(size), count(0) {}
 
     ~TPQueue() {
-        delete[] mass;
+        delete[] templ;
     }
 
     void push(const Type& element) {
