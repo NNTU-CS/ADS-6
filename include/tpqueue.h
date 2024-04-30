@@ -1,10 +1,8 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-
 #include <stdexcept>
 #include <cstddef>
-
 template<typename Type, int size>
 class TPQueue {
  private:
@@ -20,7 +18,7 @@ class TPQueue {
     }
 
     void push(const Type& element) {
-        if (count == element) {
+        if (count == capacity) {
             throw std::out_of_range("full");
         }
 
