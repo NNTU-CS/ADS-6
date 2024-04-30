@@ -1,51 +1,49 @@
-#ifndef INCLUDE_TPQUEUE_H_
-#define INCLUDE_TPQUEUE_H_
-
-#include <stdexcept>
-#include <cstddef>
+// Copyright 2022 NNTU-CS
+#ifndef INCLUDETPQUEUE_H
+#define INCLUDETPQUEUE_H
 
 template<typename T, int size>
 class TPQueue {
  private:
     T* buffer;
-    std::size_t capacity;
-    std::size_t count;
+    std::size_t maxCapacity;
+    std::size_t itemCount;
 
  public:
-    TPQueue() : buffer(new T[size]), capacity(size), count(0) {}
+    TPQueue() : buffer(new T[size]), maxCapacity(size), itemCount(0) {}
 
     ~TPQueue() {
         delete[] buffer;
     }
 
-    void push(const T& item) {
-        if (count == capacity) {
+    void enqueue(const T& element) {
+        if (itemCount == maxCapacity) {
             throw std::out_of_range("Queue is full");
         }
 
-        std::size_t index = count;
-        while (index > 0 && buffer[index - 1].priority >= item.priority) {
+        std::size_t index = itemCount;
+        while (index > 0 && buffer[index - 1].priority >= element.priority) {
             buffer[index] = buffer[index - 1];
             --index;
         }
-        buffer[index] = item;
-        ++count;
+        buffer[index] = element;
+        ++itemCount;
     }
 
-    T pop() {
-        if (count == 0) {
+    T dequeue() {
+        if (itemCount == 0) {
             throw std::out_of_range("Queue is empty");
         }
 
-        T tmp = buffer[count - 1];
-        --count;
-        return tmp;
+        T temp = buffer[itemCount - 1];
+        --itemCount;
+        return temp;
     }
 };
 
-struct Item {
-  char symbol;
-  int priority;
+struct SYM {
+  char ch;
+  int prior;
 };
 
-#endif  // INCLUDE_TPQUEUE_H_
+#endif  // INCLUDETPQUEUE_H
