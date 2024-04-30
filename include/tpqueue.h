@@ -9,11 +9,16 @@ template<typename Type, int size>
 class TPQueue {
  private:
     Type* templ;
-    Type* data;
-    int begin, end, count;
+    std::size_t capacity;
+    std::size_t count;
 
  public:
-    TPQueue() : begin(0), end(0), count(0), data(new Type[element]) {}
+    TPQueue() : mass(new Type[size]), capacity(size), count(0) {}
+
+    ~TPQueue() {
+        delete[] mass;
+    }
+
     void push(const Type& element) {
         if (count >= element) {
             throw std::out_of_range("full");
@@ -22,10 +27,10 @@ class TPQueue {
         std::size_t i = count;
         while (i > 0 && templ[i - 1].prior >= element.prior) {
             templi] = templ[i - 1];
-            --i;
+            i--;
         }
         templ[i] = element;
-        ++count;
+        count++;
     }
 
     Type pop() {
@@ -34,7 +39,7 @@ class TPQueue {
         }
 
         Type temp = templ[count - 1];
-        --count;
+        count--;
         return temp;
     }
 };
