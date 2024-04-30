@@ -1,45 +1,40 @@
 // Copyright 2022 NNTU-CS
-#ifndef INCLUDETPQUEUE_H
-#define INCLUDETPQUEUE_H
+#ifndef INCLUDE_TPQUEUE_H_
+#define INCLUDE_TPQUEUE_H_
 
 #include <stdexcept>
 #include <cstddef>
 
-template<typename T, int size>
+template<typename Type, int size>
 class TPQueue {
  private:
-    T* buffer;
-    std::size_t maxCapacity;
-    std::size_t itemCount;
+    Type* templ;
+    T* data;
+    int begin, end, count;
 
  public:
-    TPQueue() : buffer(new T[size]), maxCapacity(size), itemCount(0) {}
+    TPQueue() : begin(0), end(0), count(0), data(new Type[element]) {}
+    void push(const Type& element) {
+        if (count >= element) {
+            throw std::out_of_range("full");
+        }
 
-    ~TPQueue() {
-        delete[] buffer;
+        std::size_t i = count;
+        while (i > 0 && templ[i - 1].prior >= element.prior) {
+            templi] = templ[i - 1];
+            --i;
+        }
+        templ[i] = element;
+        ++count;
     }
 
-    void enqueue(const T& element) {
-        if (itemCount == maxCapacity) {
-            throw std::out_of_range("Queue is full");
+    Type pop() {
+        if (count == 0) {
+            throw std::out_of_range("empty");
         }
 
-        std::size_t index = itemCount;
-        while (index > 0 && buffer[index - 1].priority >= element.priority) {
-            buffer[index] = buffer[index - 1];
-            --index;
-        }
-        buffer[index] = element;
-        ++itemCount;
-    }
-
-    T dequeue() {
-        if (itemCount == 0) {
-            throw std::out_of_range("Queue is empty");
-        }
-
-        T temp = buffer[itemCount - 1];
-        --itemCount;
+        Type temp = templ[count - 1];
+        --count;
         return temp;
     }
 };
@@ -48,5 +43,4 @@ struct SYM {
   char ch;
   int prior;
 };
-
-#endif  // INCLUDETPQUEUE_H
+#endif  // INCLUDE_TPQUEUE_H_
