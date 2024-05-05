@@ -2,25 +2,44 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+#include <stdexcept>
+#include <cstddef>
+template<typename Type, int size>
 class TPQueue {
  private:
-     std::list<T> Query;
+    Type* templ;
+    std::size_t capacity;
+    std::size_t count;
+
  public:
-    void push(T a) {
-        if (!Query.empty()) {
-            for (auto i = Query.cbegin(); i != Query.cend(); i++) {
-                if (a.prior <= (*i).prior) {
-                    Query.insert(i, a);
-                    return;
-                }
-            }
-        }
-        Query.push_back(a);
+    TPQueue() : templ(new Type[size]), capacity(size), count(0) {}
+
+    ~TPQueue() {
+        delete[] templ;
     }
-    const T pop() {
-        T result = Query.back();
-        Query.pop_back();
-        return result;
+
+    void push(const Type& element) {
+        if (count == capacity) {
+            throw std::out_of_range("full");
+        }
+
+        std::size_t i = count;
+        while (i > 0 && templ[i - 1].prior >= element.prior) {
+            templ[i] = templ[i - 1];
+            i--;
+        }
+        templ[i] = element;
+        count++;
+    }
+
+    Type pop() {
+        if (count == 0) {
+            throw std::out_of_range("empty");
+        }
+
+        Type temp = templ[count - 1];
+        count--;
+        return temp;
     }
 };
 
@@ -28,5 +47,4 @@ struct SYM {
   char ch;
   int prior;
 };
-
 #endif  // INCLUDE_TPQUEUE_H_
