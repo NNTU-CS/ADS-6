@@ -1,70 +1,33 @@
 // Copyright 2021 NNTU-CS
-#pragma once
+#ifndef INCLUDE_TPQUEUE_H_
+#define INCLUDE_TPQUEUE_H_
+#include <list>
 
-#include <iostream>
-
-template <class T>
+template<typename T, int size>
 class TPQueue {
-private:
-    T* arr;
-    int size;
-    int begin, end;
-    int count;
-
-public:
-    TPQueue(int s = 100) : size(s), begin(0), end(0), count(0) {
-        arr = new T[size + 1];
-    }
-
-    ~TPQueue() {
-        delete[] arr;
-    }
-
-    void push(const T& item) {
-        if (count < size) {
-            if (end != 0) {
-                int i = end - 1;
-                while (i >= begin) {
-                    if (item.prior > arr[i].prior) {
-                        arr[i + 1] = arr[i];
-                        arr[i] = item;
-                    } else
-                        break;
-                    i--;
-                }
-            } else {
-                int i = size;
-                while (i >= begin) {
-                    if (item.prior > arr[i].prior) {
-                        arr[i + 1] = arr[i];
-                        arr[i] = item;
-                    } else
-                        break;
-                    i--;
+ private:
+    std::list<T> Query;
+ public:
+    void push(T a) {
+        if (!Query.empty()) {
+            for (auto i = Query.cbegin(); i != Query.cend(); i++) {
+                if (a.prior <= (*i).prior) {
+                    Query.insert(i, a);
+                    return;
                 }
             }
-            end++;
-            count++;
         }
+        Query.push_back(a);
     }
-
-    T pop() {
-        if (count > 0) {
-            if (end > 0)
-                end--;
-            else
-                end = size;
-            count--;
-            return arr[end];
-        }
-        return T();
-    }
-
-    bool isEmpty() const {
-        return count == 0;
-    }
-
-    bool isFull() const {
-        return count == size;
+    const T pop() {
+        T result = Query.back();
+        Query.pop_back();
+        return result;
     }
 };
+
+struct SYM {
+  char ch;
+  int prior;
+};
+#endif  
