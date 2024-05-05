@@ -5,8 +5,8 @@
 template<typename T, int size>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на кольцевом буфере
-private:
-    std::list<T> Query;
+ private:
+     std::list<T> Query;
  public:
     void push(T a) {
         if (!Query.empty()) {
