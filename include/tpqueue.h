@@ -2,9 +2,7 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-template<typename T, int size>
 class TPQueue {
-  // реализация шаблона очереди с приоритетом на кольцевом буфере
  private:
      std::list<T> Query;
  public:
