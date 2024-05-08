@@ -3,7 +3,7 @@
 #define INCLUDE_TPQUEUE_H_
 
 #include <stdexcept>
-#include <memory.h>
+#include <memory>
 
 template<typename T, int size>
 class TPQueue {
@@ -13,7 +13,10 @@ class TPQueue {
     T* data;
 
  public:
-    TPQueue() : head(0), tail(0), flag(0), data( ( T* )malloc ( sizeof( T ) * size ) ) {}
+    TPQueue() : head(0),
+                tail(0),
+                flag(0),
+                data( ( T* )malloc ( sizeof( T ) * size ) ) {}
 
     void push(const T& item) {
         if (flag >= size)
