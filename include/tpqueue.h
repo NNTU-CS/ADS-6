@@ -2,7 +2,8 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-#include <exception>
+#include <stdexcept>
+#include <cmemory>
 
 template<typename T, int size>
 class TPQueue {
