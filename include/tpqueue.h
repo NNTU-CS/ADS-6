@@ -3,7 +3,7 @@
 #define INCLUDE_TPQUEUE_H_
 
 #include <stdexcept>
-#include <cmemory>
+#include <memory.h>
 
 template<typename T, int size>
 class TPQueue {
