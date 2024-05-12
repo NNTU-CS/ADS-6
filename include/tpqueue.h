@@ -13,7 +13,8 @@ class TPQueue {
  private:
   SYM* head;
   SYM* tail;
-public:
+
+ public:
   TPQueue() : head(nullptr), tail(nullptr) {}
   ~TPQueue() {
     while (head)
@@ -52,5 +53,6 @@ public:
     return os;
   }
 };
+
 
 #endif  // INCLUDE_TPQUEUE_H_
