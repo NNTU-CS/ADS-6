@@ -1,21 +1,21 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-
+#include <iostream>
+#include <stdexcept>
+#include <cstddef>
 template<typename T, int size>
 class TPQueue {
-  private:
-    T* arr;
-    int size;
-    int count;
+private:
+    T* mass;
+    std::size_t capacity;
+    std::size_t count;
 
-public:
-    TPQueue(int s = 100) : size(s), count(0) {
-        arr = new T[size];
-    }
+ public:
+    TPQueue() : mass(new T[size]), capacity(size), count(0) {}
 
     ~TPQueue() {
-        delete[] arr;
+        delete[] mass;
     }
 
     void push(const T& item) {
