@@ -36,7 +36,7 @@ class TPQueue {
         if (count == 0) {
             std::cerr << "Queue is empty" << std::endl;
         }
-	T tmp = arr[count - 1];
+        T tmp = arr[count - 1];
         count--;
         return tmp;
     }
