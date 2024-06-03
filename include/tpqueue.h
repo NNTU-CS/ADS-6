@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <cstddef>
 template<typename T, int size>
-class TPQueue { 
+class TPQueue {
  private:
     T* arr;
     std::size_t capacity;
@@ -19,30 +19,27 @@ class TPQueue {
     }
 
     void push(const T& item) {
-        if (count < size) {
-            if (count == 0) {
-                arr[count++] = item;
-            } else {
-                int i = count - 1;
-                while (i >= 0 && item.prior > arr[i].prior) {
-                    arr[i + 1] = arr[i];
-                    i--;
-                }
-                arr[i + 1] = item;
-                count++;
-            }
-        } else {
-            std::cerr << "Queue is full" << std::endl;
+        if (count == capacity) {
+            		std::cerr << "Queue is full" << std::endl;
         }
+
+        std::size_t i = count - 1;
+        while (i >= 0 && arr[i].prior >= item.prior) {
+        arr[i + 1] = arr[i];
+              i--;
+        }
+        arr[i + 1] = item;
+        count++;
     }
 
     T pop() {
-        if (count > 0) {
-            return arr[--count];
-        } else {
+        if (count == 0) {
             std::cerr << "Queue is empty" << std::endl;
-            return T();
         }
+	
+	       T tmp = mass[count - 1];
+        count--;
+        return tmp;
     }
 };
 
