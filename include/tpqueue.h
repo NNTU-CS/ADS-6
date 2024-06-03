@@ -20,7 +20,7 @@ class TPQueue {
 
     void push(const T& item) {
         if (count == capacity) {
-            		std::cerr << "Queue is full" << std::endl;
+            std::cerr << "Queue is full" << std::endl;
         }
 
         std::size_t i = count - 1;
@@ -36,8 +36,7 @@ class TPQueue {
         if (count == 0) {
             std::cerr << "Queue is empty" << std::endl;
         }
-	
-	       T tmp = mass[count - 1];
+	T tmp = arr[count - 1];
         count--;
         return tmp;
     }
