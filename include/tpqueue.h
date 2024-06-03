@@ -6,9 +6,8 @@
 #include <cstddef>
 template<typename T, int size>
 class TPQueue { 
-
-private:
-    T* mass;
+ private:
+    T* arr;
     std::size_t capacity;
     std::size_t count;
 
