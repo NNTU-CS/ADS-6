@@ -5,17 +5,18 @@
 #include <stdexcept>
 #include <cstddef>
 template<typename T, int size>
-class TPQueue {
+class TPQueue { 
+
 private:
     T* mass;
     std::size_t capacity;
     std::size_t count;
 
  public:
-    TPQueue() : mass(new T[size]), capacity(size), count(0) {}
+    TPQueue() : arr(new T[size]), capacity(size), count(0) {}
 
     ~TPQueue() {
-        delete[] mass;
+        delete[] arr;
     }
 
     void push(const T& item) {
