@@ -4,7 +4,24 @@
 
 template<typename T, int size>
 class TPQueue {
-  // реализация шаблона очереди с приоритетом на кольцевом буфере
+public:
+    void push(const T& elem) {
+        if (this->empty()) {
+            TQueue<T>::push(elem);
+        } else {
+            bool added = false;
+            for (int i = 0; i < TQueue<T>::size(); ++i) {
+                if (elem.prior > TQueue<T>::operator.prior) {
+                    TQueue<T>::push(i, elem);
+                    added = true;
+                    break;
+                }
+            }
+            if (!added) {
+                TQueue<T>::push(elem);
+            }
+        }
+    }
 };
 
 struct SYM {
