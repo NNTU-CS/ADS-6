@@ -4,16 +4,17 @@
 
 template<typename T>
 struct ITEM {
-    T data; 
-    int prior; 
-    ITEM<T>* next; 
+    T data;
+    int prior;
+    ITEM<T>* next;
 };
+
 template<typename T, int size>
 class TPQueue {
  private:
-    ITEM<T>* head; 
+    ITEM<T>* head;
     ITEM<T>* tail;
-public:
+ public:
     TPQueue() : head(nullptr), tail(nullptr) {}
     ~TPQueue() {
         while (head) {
@@ -27,8 +28,8 @@ public:
         temp->data = data;
         temp->prior = prior;
         temp->next = nullptr;
-    if (!head || prior < head->prior) {
-            if (!head) 
+        if (!head || prior < head->prior) {
+            if (!head)
                 tail = temp;
             temp->next = head;
             head = temp;
@@ -43,20 +44,24 @@ public:
                 tail = temp;
         }
     }
-    T pop() {
+    ITEM<T>* pop() {
         if (!head) {
-            throw std::out_of_range("Queue is empty");
+            return nullptr;
         }
-        T data = head->data;
         ITEM<T>* temp = head;
         head = head->next;
-        delete temp;
-        return data;
+        if (!head)
+            tail = nullptr;
+        return temp;
+    }
+    bool isEmpty() const {
+        return head == nullptr;
     }
 };
+
 struct SYM {
-  char ch;
-  int prior;
+    char ch;
+    int prior;
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
