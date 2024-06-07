@@ -30,20 +30,22 @@ class TPQueue {
         temp->data = data;
         temp->prior = prior;
         temp->next = nullptr;
-        if (!head || prior < head->prior) {
-            if (!head)
-                tail = temp;
+        if (!head || prior > head->prior) {
             temp->next = head;
             head = temp;
+            if (!tail) {
+                tail = temp;
+            }
         } else {
             ITEM<T>* current = head;
-            while (current->next && current->next->prior <= prior) {
+            while (current->next && current->next->prior >= prior) {
                 current = current->next;
             }
             temp->next = current->next;
             current->next = temp;
-            if (!temp->next)
+            if (!current->next) {
                 tail = temp;
+            }
         }
     }
     T pop() {
@@ -52,6 +54,9 @@ class TPQueue {
         }
         ITEM<T>* temp = head;
         head = head->next;
+        if (!head) {
+            tail = nullptr;
+        }
         T data = temp->data;
         delete temp;
         return data;
