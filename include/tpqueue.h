@@ -14,7 +14,9 @@ class TPQueue {
  private:
     ITEM<T>* head;
     ITEM<T>* tail;
+
  public:
+
     TPQueue() : head(nullptr), tail(nullptr) {}
     ~TPQueue() {
         while (head) {
@@ -44,18 +46,15 @@ class TPQueue {
                 tail = temp;
         }
     }
-    ITEM<T>* pop() {
+    T pop() {
         if (!head) {
-            return nullptr;
+            return T();
         }
         ITEM<T>* temp = head;
         head = head->next;
-        if (!head)
-            tail = nullptr;
-        return temp;
-    }
-    bool isEmpty() const {
-        return head == nullptr;
+        T data = temp->data;
+        delete temp;
+        return data;
     }
 };
 
