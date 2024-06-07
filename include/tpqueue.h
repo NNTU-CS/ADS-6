@@ -24,7 +24,8 @@ class TPQueue {
             delete temp;
         }
     }
-    void push(const T& data, int prior) {
+    void push(const T& data) {
+        int prior = data.prior;
         ITEM<T>* temp = new ITEM<T>;
         temp->data = data;
         temp->prior = prior;
