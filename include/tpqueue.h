@@ -19,11 +19,11 @@ public:
         arr = new T[size];
     }
     void push(const T& Instance) {
+        int i = 0;
         if (Quantity == 0) {
             Quantity++;
             arr[0] = Instance;
         }
-        int i;
         else if (Quantity < size) {
             Quantity++;
             for (i = End; i >= Start; i--) {
