@@ -7,57 +7,38 @@ struct SYM {
   int prior;
 };
 
-template<typename T>
+template<typename T, int size>
 class TPQueue {
-private:
-  struct Node {
-    T data;
-    Node* next;
-  };
-  Node* first;
-  Node* last;
+  int Start, End, Quantity;
+  T* arr;
 public:
-  TPQueue() : first(nullptr), last(nullptr) {}
-  ~TPQueue() {
-    while (first) {
-      Node* tmp = first->next;
-      delete first;
-      first = tmp;
-    }
+  TPQueue(){
+    Start = 0;
+    End = 0;
+    Quantity = 0;
+    arr = new T[size];
   }
-  void push(const T& elem) {
-    Node* temp = new Node{elem, nullptr};
-    if (!first) {
-      first = temp;
-      last = temp;
-    } else {
-      Node* curr = first;
-      Node* prev = nullptr;
-      while (curr && elem.prior <= curr->data.prior) {
-        prev = curr;
-        curr = curr->next;
-      }
-      if (!prev) {
-        temp->next = first;
-        first = temp;
-      } else {
-        prev->next = temp;
-        temp->next = curr;
-        if (!curr) last = temp;
-      }
+  void push(const T& Instance) {
+    if (Quantity == 0) {
+      Quantity++;
+      arr[0] = Instance;
+    }
+    int i = 0;
+    else if (Quantity < size) {
+      Quantity++;
+      for (i = End; i >= Start; i--) {
+        if (Instance.prior > arr[i].prior) {
+          arr[(i + 1) % size] = arr[i % size];
+        } else {
+            break;
+        }
+      arr[(i + 1) % size] = Instance;
+      End++;
     }
   }
   T pop() {
-    if (empty())
-      throw “Queue is empty”;
-    T result = first->data;
-    Node* temp = first;
-    first = first->next;
-    delete temp;
-    return result;
-  }
-  bool empty() const {
-    return first == nullptr;
+    Quantity--;
+    return arr[(Start++) % size];
   }
 };
 #endif  // INCLUDE_TPQUEUE_H_
