@@ -11,8 +11,9 @@ template<typename T, int size>
 class TPQueue {
     int Start, End, Quantity;
     T* arr;
-public:
-    TPQueue(){
+
+ public:
+    TPQueue() {
         Start = 0;
         End = 0;
         Quantity = 0;
@@ -23,8 +24,7 @@ public:
         if (Quantity == 0) {
             Quantity++;
             arr[0] = Instance;
-        }
-        else if (Quantity < size) {
+        } else if (Quantity < size) {
             Quantity++;
             for (i = End; i >= Start; i--) {
                 if (Instance.prior > arr[i].prior) {
